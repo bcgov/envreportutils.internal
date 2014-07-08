@@ -24,10 +24,10 @@ the printable version RMarkdown document.
 }
 \examples{
 \dontrun{
-indicator_skeleton("c:/_dev/tarballs", print_ver = TRUE, bucket="Contaminants",
+indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE,
+                   bucket="Contaminants",
                    title="Trends in Tar Ball deposition in BC (1876-1921)",
                    rstudio = TRUE)
-
 }
 }
 

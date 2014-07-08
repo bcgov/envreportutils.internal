@@ -13,10 +13,10 @@
 #' @param  rstudio Create an Rstudio project file?
 #' @export
 #' @examples \dontrun{
-#' indicator_skeleton("c:/_dev/tarballs", print_ver = TRUE, bucket="Contaminants", 
+#' indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE, 
+#'                    bucket="Contaminants", 
 #'                    title="Trends in Tar Ball deposition in BC (1876-1921)", 
 #'                    rstudio = TRUE)
-#'
 #'}
 indicator_skeleton <- function (path, print_ver = TRUE, bucket, title, rstudio = FALSE) {  
   name <- basename(path)
@@ -31,7 +31,10 @@ indicator_skeleton <- function (path, print_ver = TRUE, bucket, title, rstudio =
   }
   
   dir.create(path)
-  dir.create(file.path(path, "R"))
+  
+  file.create(file.path(path, "01_load.R"), file.path(path, "02_clean.R"), 
+              file.path(path, "03_analysis.R"), file.path(path, "04_output.R"))
+  
   dir.create(file.path(path, "data"))
   dir.create(file.path(path, "out"))
   dir.create(file.path(path, "doc"))
