@@ -12,7 +12,7 @@
 #' @param  title (required if print_ver = \code{TRUE}) Title of the indicator
 #' @param  rstudio Create an Rstudio project file?
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE, 
 #'                    bucket="Contaminants", 
 #'                    title="Trends in Tar Ball deposition in BC (1876-1921)", 
@@ -47,7 +47,7 @@ indicator_skeleton <- function (path, print_ver = TRUE, bucket, title, rstudio =
   }
   
   if (rstudio) {
-    add_rstudio_project(path)
+    add_rproj(path)
   }
   
   invisible(TRUE)

@@ -23,7 +23,7 @@ Creates the folder structure for a new indicator, including a template for
 the printable version RMarkdown document.
 }
 \examples{
-\dontrun{
+\donttest{
 indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE,
                    bucket="Contaminants",
                    title="Trends in Tar Ball deposition in BC (1876-1921)",
