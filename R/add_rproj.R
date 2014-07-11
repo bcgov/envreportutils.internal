@@ -3,6 +3,7 @@
 #' <full description of function>
 #'
 #' @param  path folder path of the project
+#' @export
 #' @examples \dontrun{
 #'
 #'}
