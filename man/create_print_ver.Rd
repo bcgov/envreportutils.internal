@@ -3,21 +3,21 @@
 \alias{create_print_ver}
 \title{Create a print version starter based on the template}
 \usage{
-create_print_ver(bucket, title, path)
+create_print_ver(bucket = NULL, name = NULL, path = "print_ver")
 }
 \arguments{
 \item{bucket}{Indicator topic (one of Air, Climate Change, Contaminants,
 Forests, Land, Plants and Animals, Sustainability, Waste, Water)}
 
-\item{title}{Title of the indicator}
+\item{name}{Short name which will form the base name of the .Rmd file}
 
-\item{path}{path and filename of the resulting .Rmd file}
+\item{path}{Folder in which to place resulting .Rmd file}
 }
 \description{
 <full description of function>
 }
 \examples{
-\dontrun{
+\donttest{
 
 }
 }

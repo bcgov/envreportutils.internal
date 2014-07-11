@@ -18,19 +18,24 @@
 #'                    title="Trends in Tar Ball deposition in BC (1876-1921)", 
 #'                    rstudio = TRUE)
 #'}
-indicator_skeleton <- function (path, print_ver = TRUE, bucket, title, rstudio = FALSE) {  
+indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, title, rstudio = FALSE) {  
+  
+  if (path == ".") {
+    path <- getwd()
+  } else {
+    if (file.exists(path)) {
+      stop("Directory already exists", call. = FALSE)
+    }
+    
+    if (!file.exists(dirname(path))) {
+      stop("Parent directory does not exist.", call. = FALSE)
+    }
+    
+    dir.create(path)
+  }
+
   name <- basename(path)
   message("Creating indicator ", name, " in ", dirname(path))
-  
-  if (file.exists(path)) {
-    stop("Directory already exists", call. = FALSE)
-  }
-  
-  if (!file.exists(dirname(path))) {
-    stop("Parent directory does not exist.", call. = FALSE)
-  }
-  
-  dir.create(path)
   
   file.create(file.path(path, "01_load.R"), file.path(path, "02_clean.R"), 
               file.path(path, "03_analysis.R"), file.path(path, "04_output.R"))
@@ -40,10 +45,7 @@ indicator_skeleton <- function (path, print_ver = TRUE, bucket, title, rstudio =
   dir.create(file.path(path, "doc"))
   
   if (print_ver) {
-    print_ver_path <- file.path(path, "print_ver")
-    dir.create(print_ver_path)
-    create_print_ver(bucket = bucket, title = title, 
-                     path = file.path(print_ver_path, paste0(name, ".Rmd")))
+    create_print_ver(bucket = bucket, title = title, path = file.path(path, "print_ver"))
   }
   
   if (rstudio) {

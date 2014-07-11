@@ -3,7 +3,8 @@
 \alias{indicator_skeleton}
 \title{Creates the framework of a new indicator development folder}
 \usage{
-indicator_skeleton(path, print_ver = TRUE, bucket, title, rstudio = FALSE)
+indicator_skeleton(path = ".", print_ver = TRUE, bucket, title,
+  rstudio = FALSE)
 }
 \arguments{
 \item{path}{location to create new indicator}

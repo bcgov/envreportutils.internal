@@ -4,21 +4,30 @@
 #'
 #' @param  bucket Indicator topic (one of Air, Climate Change, Contaminants, 
 #'         Forests, Land, Plants and Animals, Sustainability, Waste, Water)
-#' @param  title Title of the indicator
-#' @param  path path and filename of the resulting .Rmd file
+#' @param  name Short name which will form the base name of the .Rmd file
+#' @param  path Folder in which to place resulting .Rmd file
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #'
 #'}
-create_print_ver <- function(bucket, title, path) {
+create_print_ver <- function(bucket = NULL, name = NULL, path = "print_ver") {
+  
   if (!bucket %in% c("Air", "Climate Change", "Contaminants", "Forests", "Land", 
                      "Plants and Animals", "Sustainability", "Waste", "Water")) {
     stop("Invalid topic name supplied to 'bucket'", call. = FALSE)
   }
   
+  if (is.null(title)) {
+    stop("You must specify a title for the print version")
+  }
+  
+  if (!file.exists(path)) {
+    dir.create(path)
+  }
+  
   writeLines(c("---", 
                paste0("title: ", bucket), 
-               paste0("subtitle: ", title), 
+               "subtitle: Insert indicator title here", 
                "bibliography: example.bib", 
                paste0("output:"),
                paste0("  pdf_document:"), 
@@ -31,10 +40,10 @@ Instructions:
 Set title as one of: Air, Climate Change, Contaminants, Forests, Land, 
                      Plants and Animals, Sustainability, Waste, Water
 
-Set subtitle as the indicator title
+Set subtitle as the indicator title (e.g., 'Trends in Tar Ball deposition in BC (1876-1921)')
 
 If you have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->"
-  ), path)
+  ), file.path(path, paste0(name, ".Rmd")))
 }
