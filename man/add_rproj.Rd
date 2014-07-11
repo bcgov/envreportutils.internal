@@ -3,7 +3,7 @@
 \alias{add_rproj}
 \title{Add an RProject file to a directory}
 \usage{
-add_rproj(path)
+add_rproj(path = ".")
 }
 \arguments{
 \item{path}{folder path of the project}

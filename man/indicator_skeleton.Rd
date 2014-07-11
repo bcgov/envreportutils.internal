@@ -3,7 +3,7 @@
 \alias{indicator_skeleton}
 \title{Creates the framework of a new indicator development folder}
 \usage{
-indicator_skeleton(path = ".", print_ver = TRUE, bucket, title,
+indicator_skeleton(path = ".", print_ver = TRUE, bucket, name,
   rstudio = FALSE)
 }
 \arguments{
@@ -15,7 +15,8 @@ indicator_skeleton(path = ".", print_ver = TRUE, bucket, title,
 Air, Climate Change, Contaminants, Forests, Land, Plants and Animals,
 Sustainability, Waste, Water)}
 
-\item{title}{(required if print_ver = \code{TRUE}) Title of the indicator}
+\item{name}{(required if print_ver = \code{TRUE}) short name of indicator to be
+used for print version filename}
 
 \item{rstudio}{Create an Rstudio project file?}
 }

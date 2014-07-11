@@ -7,14 +7,24 @@
 #' @examples \dontrun{
 #'
 #'}
-add_rproj <- function(path) {
+add_rproj <- function(path = ".") {
+  
+  if (path == ".") {
+    path <- getwd()
+  }
+  
   path <- file.path(path, paste0(basename(path), ".Rproj"))
+  
   if (file.exists(path)) {
     stop(".Rproj already exists", call. = FALSE)
   }
+  
   message("Adding Rstudio project file to ", basename(path))
+  
   template_path <- system.file("templates/template.Rproj", 
                                package = "envreportbc")
+  
   file.copy(template_path, path)
+  
   invisible(TRUE)
 }

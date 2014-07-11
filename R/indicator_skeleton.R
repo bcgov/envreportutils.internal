@@ -3,13 +3,13 @@
 #' Creates the folder structure for a new indicator, including a template for 
 #' the printable version RMarkdown document.
 #'
-#' @import devtools
 #' @param  path location to create new indicator
 #' @param  print_ver create a print version template?
 #' @param  bucket (required if print_ver = \code{TRUE}) Indicator topic (one of 
 #'         Air, Climate Change, Contaminants, Forests, Land, Plants and Animals, 
 #'         Sustainability, Waste, Water)
-#' @param  title (required if print_ver = \code{TRUE}) Title of the indicator
+#' @param  name (required if print_ver = \code{TRUE}) short name of indicator to be 
+#'         used for print version filename
 #' @param  rstudio Create an Rstudio project file?
 #' @export
 #' @examples \donttest{
@@ -18,7 +18,7 @@
 #'                    title="Trends in Tar Ball deposition in BC (1876-1921)", 
 #'                    rstudio = TRUE)
 #'}
-indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, title, rstudio = FALSE) {  
+indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, name, rstudio = FALSE) {  
   
   if (path == ".") {
     path <- getwd()
@@ -45,7 +45,7 @@ indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, title, rst
   dir.create(file.path(path, "doc"))
   
   if (print_ver) {
-    create_print_ver(bucket = bucket, title = title, path = file.path(path, "print_ver"))
+    create_print_ver(bucket = bucket, name = name, path = file.path(path, "print_ver"))
   }
   
   if (rstudio) {
