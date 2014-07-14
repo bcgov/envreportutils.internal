@@ -6,7 +6,10 @@
 indicator_skeleton(path = ".", print_ver = TRUE, bucket, rstudio = FALSE)
 }
 \arguments{
-\item{path}{location to create new indicator}
+\item{path}{location to create new indicator. If /code{"."} (the default),
+the name of the working directory will be taken as the indicator name. If
+not /code{"."}, the last component of the given path will be used as the
+indicator name.}
 
 \item{print_ver}{create a print version template?}
 
@@ -17,14 +20,13 @@ Sustainability, Waste, Water)}
 \item{rstudio}{Create an Rstudio project file?}
 }
 \description{
-Creates the folder structure for a new indicator, including a template for
-the printable version RMarkdown document.
+Creates the folder structure for a new indicator, including a template for the
+printable version RMarkdown document.
 }
 \examples{
 \donttest{
 indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE,
                    bucket="Contaminants",
-                   title="Trends in Tar Ball deposition in BC (1876-1921)",
                    rstudio = TRUE)
 }
 }
