@@ -45,7 +45,7 @@ indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, name, rstu
   dir.create(file.path(path, "doc"))
   
   if (print_ver) {
-    create_print_ver(bucket = bucket, name = name, path = file.path(path, "print_ver"))
+    create_print_ver(bucket = bucket, name = name, dir = file.path(path, "print_ver"))
   }
   
   if (rstudio) {
