@@ -6,6 +6,8 @@ check:
 
 build:
 	Rscript -e "library(devtools); build('.', binary=TRUE)"
+	cp ../envreportbc_0.1.zip ../envreportbc_0.1.tar.gz "I:/SPD/Science Policy & Economics/State of Environment/_dev/packages/"
 
 install:
 	Rscript -e "library(devtools); install('.')"
+	
