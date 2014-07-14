@@ -1,12 +1,13 @@
-#' Create a print version starter based on the template
+#'Create a print version starter based on the template
 #'
-#' <full description of function>
+#'<full description of function>
 #'
-#' @param  bucket Indicator topic (one of Air, Climate Change, Contaminants, 
-#'         Forests, Land, Plants and Animals, Sustainability, Waste, Water)
-#' @param  name Short name which will form the base name of the .Rmd file
-#' @param  dir Folder in which to place resulting .Rmd file
-#' @export
+#'@param  bucket Indicator topic (one of Air, Climate Change, Contaminants, 
+#'  Forests, Land, Plants and Animals, Sustainability, Waste, Water)
+#'@param  name Short name which will form the base name of the .Rmd file
+#'@param  dir Folder in which to place resulting .Rmd file. Default is
+#'  /code{print_ver} inside the current working directory
+#'@export
 #' @examples \donttest{
 #'
 #'}
@@ -29,7 +30,7 @@ create_print_ver <- function(bucket = NULL, name = NULL, dir = "print_ver") {
   filepath <- file.path(dir, paste0(name, ".Rmd"))
   
   if (file.exists(filepath)) {
-    stop(paste0("File ", filepath, " already exists")
+    stop(paste0("File ", filepath, " already exists"))
   }
   
   writeLines(c("---", 

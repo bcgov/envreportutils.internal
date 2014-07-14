@@ -8,8 +8,6 @@
 #' @param  bucket (required if print_ver = \code{TRUE}) Indicator topic (one of 
 #'         Air, Climate Change, Contaminants, Forests, Land, Plants and Animals, 
 #'         Sustainability, Waste, Water)
-#' @param  name (required if print_ver = \code{TRUE}) short name of indicator to be 
-#'         used for print version filename
 #' @param  rstudio Create an Rstudio project file?
 #' @export
 #' @examples \donttest{
@@ -18,11 +16,12 @@
 #'                    title="Trends in Tar Ball deposition in BC (1876-1921)", 
 #'                    rstudio = TRUE)
 #'}
-indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, name, rstudio = FALSE) {  
+indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, rstudio = FALSE) {  
   
   if (path == ".") {
     path <- getwd()
   } else {
+    
     if (file.exists(path)) {
       stop("Directory already exists", call. = FALSE)
     }
@@ -34,18 +33,25 @@ indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, name, rstu
     dir.create(path)
   }
 
+  files <- c(file.path(path, "01_load.R"), file.path(path, "02_clean.R"), 
+             file.path(path, "03_analysis.R"), file.path(path, "04_output.R"))
+  
+  dirs <- c(file.path(path, "data"), file.path(path, "out"), file.path(path, "doc"))
+  
+  if (any(file.exists(files, dirs))) {
+    stop("It looks as though you already have an indicator set up here")
+  }
+  
   name <- basename(path)
+  
   message("Creating indicator ", name, " in ", dirname(path))
   
-  file.create(file.path(path, "01_load.R"), file.path(path, "02_clean.R"), 
-              file.path(path, "03_analysis.R"), file.path(path, "04_output.R"))
+  file.create(files)
   
-  dir.create(file.path(path, "data"))
-  dir.create(file.path(path, "out"))
-  dir.create(file.path(path, "doc"))
+  lapply(dirs, dir.create)
   
   if (print_ver) {
-    create_print_ver(bucket = bucket, name = name, dir = file.path(path, "print_ver"))
+    create_print_ver(bucket = bucket, name = basename(path), dir = file.path(path, "print_ver"))
   }
   
   if (rstudio) {
