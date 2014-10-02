@@ -12,5 +12,11 @@
 #'
 #'}
 bcgw_connect <- function(user, password, ...) {
+  bit_64 <- R.Version()$arch == "x86_64"
+  
+  if (bit_64) {
+    stop("You need to be running a 32 bit version of R to use ODBC.")
+  }
+  
   odbcConnect("BCGW", user, password, ...)
 }
