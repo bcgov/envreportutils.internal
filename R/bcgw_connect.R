@@ -4,14 +4,16 @@
 #' @import RODBC
 #'
 #' @param user BCGW Username
-#' @param  password BCGW password
 #' @param  ... Additional parameters passed on to odbcConnect
 #' @export
 #' @return an odbc connection
 #' @examples \dontrun{
 #'
 #'}
-bcgw_connect <- function(user, password, ...) {
+bcgw_connect <- function(user, ...) {
+  
+  password <- readline("Please enter your passsword: ") 
+  
   bit_64 <- R.Version()$arch == "x86_64"
   
   if (bit_64) {

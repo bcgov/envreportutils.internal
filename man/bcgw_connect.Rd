@@ -3,12 +3,10 @@
 \alias{bcgw_connect}
 \title{Connect to the BCGW (LRDW)}
 \usage{
-bcgw_connect(user, password, ...)
+bcgw_connect(user, ...)
 }
 \arguments{
 \item{user}{BCGW Username}
-
-\item{password}{BCGW password}
 
 \item{...}{Additional parameters passed on to odbcConnect}
 }
