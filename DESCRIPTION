@@ -5,5 +5,7 @@ Authors@R: "Andy Teucher <andy.teucher@gov.bc.ca> [aut, cre]"
 Description: Set of functions for EnvironmentalReportingBC operations
 Depends:
     R (>= 3.1.0)
+Imports:
+    RODBC
 License: What license is it under?
 LazyData: true
