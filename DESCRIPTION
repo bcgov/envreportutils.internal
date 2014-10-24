@@ -6,6 +6,8 @@ Description: Set of functions for EnvironmentalReportingBC operations
 Depends:
     R (>= 3.1.0)
 Imports:
-    RODBC
+    RODBC,
+    grid,
+    ggplot2
 License: What license is it under?
 LazyData: true
