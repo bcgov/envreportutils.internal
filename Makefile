@@ -3,7 +3,7 @@ PKGNAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 docs:
-	rm NAMESPACE
+	rm -f NAMESPACE
 	Rscript -e "library(devtools); library(methods); document('.'); check_doc('.')"
 
 check:
