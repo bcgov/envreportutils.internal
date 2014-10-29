@@ -11,6 +11,9 @@
 #' @param  title Optional title as a character string
 #' @param  widths a vector of relative column widths eg. c(3,2)
 #' @param  heights a vector of relative column heights eg. c(3,2)
+#' @param  titlefont The font of the title
+#' @param  titleface The font face (1 = normal, 2 = bold, 3 = italic, 4 = bold italic)
+#' @param  titlesize The sice of the title font
 #' 
 #' @details If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
 #' then plot 1 will go in the upper left, 2 will go in the upper right, and
@@ -31,8 +34,15 @@
 #' myplots <- list(plot1, plot2, plot1)
 #' multiplot(plotlist = myplots, layout =matrix(c(1,2,3,3), nrow=2), 
 #'      heights = c(1,3), widths = c(3,4), title = "My three unrelated plots")
+#' ## Adjusting fonts
+#' library(extrafont)
+#' loadfonts("win")
+#' multiplot(plotlist = myplots, layout =matrix(c(1,2,3,3), nrow=2),
+#'           heights = c(1,3), widths = c(3,4), title = "My three unrelated plots", 
+#'           titlefont = "Wingdings", titleface = 4, titlesize = 20)
 #'}
-multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL, title=NULL, widths=NULL, heights=NULL) {
+multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL, widths=NULL, heights=NULL, 
+                      title=NULL, titlefont = "", titleface = 1, titlesize = 16) {
   
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)
@@ -92,7 +102,9 @@ multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL, title=NULL, width
     
     if (!is.null(title)) {
       grid.text(title, vp = viewport(layout.pos.row = 1
-                                     , layout.pos.col = 1:ncol(layout)))
+                                     , layout.pos.col = 1:ncol(layout)), 
+                gp = gpar(fontfamily = titlefont, fontface = titleface, 
+                          fontsize = titlesize))
     }
     
   }

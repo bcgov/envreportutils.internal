@@ -3,8 +3,9 @@
 \alias{multiplot}
 \title{Plot multiple plots in a single pane}
 \usage{
-multiplot(..., plotlist = NULL, cols = 1, layout = NULL, title = NULL,
-  widths = NULL, heights = NULL)
+multiplot(..., plotlist = NULL, cols = 1, layout = NULL, widths = NULL,
+  heights = NULL, title = NULL, titlefont = "", titleface = 1,
+  titlesize = 16)
 }
 \arguments{
 \item{...}{Two or more ggplot2 objects}
@@ -15,11 +16,17 @@ multiplot(..., plotlist = NULL, cols = 1, layout = NULL, title = NULL,
 
 \item{layout}{A matrix specifying the layout. If present, 'cols' is ignored.}
 
-\item{title}{Optional title as a character string}
-
 \item{widths}{a vector of relative column widths eg. c(3,2)}
 
 \item{heights}{a vector of relative column heights eg. c(3,2)}
+
+\item{title}{Optional title as a character string}
+
+\item{titlefont}{The font of the title}
+
+\item{titleface}{The font face (1 = normal, 2 = bold, 3 = italic, 4 = bold italic)}
+
+\item{titlesize}{The sice of the title font}
 }
 \value{
 Don't know
@@ -47,6 +54,12 @@ multiplot(plot1, plot2, cols = 1, heights = c(10,2), title = "My two unrelated p
 myplots <- list(plot1, plot2, plot1)
 multiplot(plotlist = myplots, layout =matrix(c(1,2,3,3), nrow=2),
      heights = c(1,3), widths = c(3,4), title = "My three unrelated plots")
+## Adjusting fonts
+library(extrafont)
+loadfonts("win")
+multiplot(plotlist = myplots, layout =matrix(c(1,2,3,3), nrow=2),
+          heights = c(1,3), widths = c(3,4), title = "My three unrelated plots",
+          titlefont = "Wingdings", titleface = 4, titlesize = 20)
 }
 }
 
