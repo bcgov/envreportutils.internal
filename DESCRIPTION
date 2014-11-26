@@ -1,13 +1,11 @@
 Package: envreportbc
 Title: Facilitate EnvReportBC indicator development
 Version: 0.1
-Authors@R: "Andy Teucher <andy.teucher@gov.bc.ca> [aut, cre]"
-Description: Set of functions for EnvironmentalReportingBC operations
+Author: "Andy Teucher <andy.teucher@gov.bc.ca> [aut, cre]"
+Description: Set of functions for EnvironmentalReportingBC internal operations
 Depends:
     R (>= 3.1.0)
 Imports:
-    RODBC,
-    grid,
-    ggplot2
+    RODBC
 License: What license is it under?
 LazyData: true
