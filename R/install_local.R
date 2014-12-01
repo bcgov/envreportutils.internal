@@ -37,7 +37,9 @@ install_local <- function(pkgname, install_path = NULL) {
   
   install.packages(pkg_file, repos = NULL)
   
-  if (is_loaded) library(pkgname, character.only = TRUE)
+  if (is_loaded) library(pkgname, character.only = TRUE, quietly = TRUE)
+  
+  invisible()
   
 }
 
