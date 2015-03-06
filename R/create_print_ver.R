@@ -13,9 +13,10 @@
 #'}
 create_print_ver <- function(bucket = NULL, name = NULL, dir = "print_ver") {
   
+  bucket <- paste0(toupper(substring(bucket, 1, 1)), substring(bucket, 2))
   if (!bucket %in% c("Air", "Climate Change", "Contaminants", "Forests", "Land", 
                      "Plants and Animals", "Sustainability", "Waste", "Water")) {
-    stop("Invalid topic name supplied to 'bucket'", call. = FALSE)
+    stop("Invalid topic name supplied to 'bucket'. Print version no created.", call. = FALSE)
   }
   
   if (is.null(name)) {
