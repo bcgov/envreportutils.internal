@@ -55,4 +55,6 @@ If you have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->"
   ), filepath)
+  
+  invisible(TRUE)
 }
