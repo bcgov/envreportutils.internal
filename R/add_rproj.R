@@ -13,18 +13,18 @@ add_rproj <- function(path = ".") {
     path <- getwd()
   }
   
-  path <- file.path(path, paste0(basename(path), ".Rproj"))
+  projfile <- file.path(path, paste0(basename(path), ".Rproj"))
   
-  if (file.exists(path)) {
+  if (file.exists(projfile)) {
     stop(".Rproj already exists", call. = FALSE)
   }
   
-  message("Adding Rstudio project file to ", basename(path))
+  message("Adding Rstudio project file to ", basename(projfile))
   
   template_path <- system.file("templates/template.Rproj", 
                                package = "envreportbc")
   
-  file.copy(template_path, path)
+  file.copy(template_path, projfile)
   
   invisible(TRUE)
 }
