@@ -40,7 +40,7 @@ create_print_ver <- function(bucket = NULL, name = NULL, dir = "print_ver") {
                "bibliography: example.bib", 
                paste0("output:"),
                paste0("  pdf_document:"), 
-               paste0("    template: I:/SPD/Science Policy & Economics/State of Environment/_dev/templates/print_ver_template.tex"), 
+               paste0("    template: D:/templates/print_ver_template.tex"), 
                "---", 
                "
 <!--
