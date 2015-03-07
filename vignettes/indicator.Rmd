@@ -48,7 +48,6 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/")
-
 indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
                    git_clone = "D:/git_server/contaminants/tarballs")
 ```
@@ -83,7 +82,6 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/")
-
 indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
                    git_clone = "https://github.com/bcgov/tarballs.git")
 ```
@@ -110,7 +108,6 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/tarballs") ## Assuming this directory already exists)
-
 indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
 ```
   
@@ -120,7 +117,6 @@ indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
     
 ```{r}
 setwd("c:/_dev")
-
 indicator_skeleton(path = "tarballs", bucket = "Contaminants", git_init = FALSE)
 ```
 
