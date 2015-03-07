@@ -36,6 +36,9 @@ If you are cloning a repository (\code{git_clone = "path_to_repo"}),
   you are setting up a new project (with or without git), \code{path} should
   be \code{"."} if you are within an already created project directory, or
   the name of the folder you want to create.
+
+  You can see more examples in the package vignette. Type
+  \code{browseVignettes("envreportbc")} to view it.
 }
 \examples{
 \donttest{

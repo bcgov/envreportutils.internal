@@ -16,10 +16,13 @@
 #' @param  rstudio Create an Rstudio project file?
 #' @details If you are cloning a repository (\code{git_clone = "path_to_repo"}),
 #'   you should run this function from the root of your dev folder and leave 
-#'   \code{path = "."}, as the repository will be cloned into a new folder. If
-#'   you are setting up a new project (with or without git), \code{path} should
-#'   be \code{"."} if you are within an already created project directory, or
+#'   \code{path = "."}, as the repository will be cloned into a new folder. If 
+#'   you are setting up a new project (with or without git), \code{path} should 
+#'   be \code{"."} if you are within an already created project directory, or 
 #'   the name of the folder you want to create.
+#'   
+#'   You can see more examples in the package vignette. Type
+#'   \code{browseVignettes("envreportbc")} to view it.
 #' @export
 #'  @examples \donttest{
 #'  indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE, 
