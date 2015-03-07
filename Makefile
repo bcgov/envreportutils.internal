@@ -17,5 +17,7 @@ build:
 	"I:/SPD/Science Policy & Economics/State of Environment/_dev/packages/"
 
 install:
-	Rscript -e "library(devtools); install('.')"
+	Rscript -e "library(devtools); install('.', build_vignettes = TRUE)"
 	
+vignette:
+	Rscript -e "library(devtools); build_vignettes('.')""

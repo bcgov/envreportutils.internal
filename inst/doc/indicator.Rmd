@@ -2,7 +2,7 @@
 title: "Setting Up a New EnvReportBC Indicator Project in RStudio"
 date: "`r Sys.Date()`"
 output: 
-  html_document:
+  rmarkdown::html_vignette:
     toc: true
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
