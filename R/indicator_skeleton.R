@@ -14,6 +14,7 @@
 #' @param git_init Create a new git repository? Logical, default \code{TRUE}.
 #' @param git_clone the url of a git repo to clone.
 #' @param  rstudio Create an Rstudio project file?
+#' @param apache Add licensing info for release under Apache 2.0? Default \code{TRUE}.
 #' @details If you are cloning a repository (\code{git_clone = "path_to_repo"}),
 #'   you should run this function from the root of your dev folder and leave 
 #'   \code{path = "."}, as the repository will be cloned into a new folder. If 
@@ -29,7 +30,9 @@
 #'                     bucket="Contaminants", 
 #'                     rstudio = TRUE)
 #' }
-indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, git_init = TRUE, git_clone = NULL, rstudio = TRUE) {
+indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, 
+                                git_init = TRUE, git_clone = NULL, 
+                                rstudio = TRUE, apache = TRUE) {
 
 #   now <- Sys.time()
 #   options(error = quote(error_cleanup(now)))
@@ -67,7 +70,12 @@ indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, git_init =
   lapply(Rfiles, file.create)
   lapply(dirs, dir.create)
   
-  add_metafiles("README.md", "LICENSE")
+  add_metafiles("README.md")
+  
+  if (apache) {
+    add_license(path)
+    lapply(Rfiles, add_license_header, substr(Sys.Date(), 1, 4))
+  }
   
   if (rstudio) {
     if (!length(list.files(pattern = "*.Rproj", ignore.case = TRUE))) add_rproj() else 
@@ -143,5 +151,44 @@ add_metafiles <- function(...) {
       file.create(file)
     }
   }
+  invisible(TRUE)
+}
+
+add_license_header <- function(file, year) {
+  
+  txt <- '# Copyright YYYY Province of British Columbia
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+'
+  txt <- gsub("YYYY", year, txt)
+  
+  writeLines(txt, file)
+  
+}
+
+add_license <- function(path = ".") {
+  
+  if (path == ".") {
+    path <- getwd()
+  }
+  
+  licensefile <- file.path(path, "LICENSE")
+  
+  if (file.exists(licensefile)) {
+    warning("LICENSE already exists. Not adding a new one")
+  } else {
+    message("Adding file LICENSE")
+    template_path <- system.file("templates/LICENSE", package = "envreportbc")
+    file.copy(template_path, licensefile)
+  }
+  
   invisible(TRUE)
 }
