@@ -13,6 +13,6 @@ add_license(path = ".")
 Add a LICENSE file (Apache 2.0) to the project directory
 }
 \seealso{
-\code{\link{add_readme}} \code{\link{add_contributing}} \code{\link{add_license_header}}
+\code{\link{add_readme}}, \code{\link{add_contributing}}, \code{\link{add_license_header}}
 }
 

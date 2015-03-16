@@ -15,7 +15,7 @@ add_file_from_template(path, fname)
 Should really only be called by other functions
 }
 \seealso{
-\code{\link{add_readme}} \code{\link{add_contributing}} \code{\link{add_license}}
+\code{\link{add_readme}}, \code{\link{add_contributing}}, \code{\link{add_license}}
 }
 \keyword{internal}
 

@@ -15,6 +15,6 @@ add_readme(path = ".", package = FALSE)
 Add a README.md file to the project directory
 }
 \seealso{
-\code{\link{add_contributing}} \code{\link{add_license}} \code{\link{add_license_header}}
+\code{\link{add_contributing}}, \code{\link{add_license}}, \code{\link{add_license_header}}
 }
 

@@ -13,6 +13,6 @@ add_contributing(path = ".")
 Add a CONTRIBUTING.md file to the project directory
 }
 \seealso{
-\code{\link{add_readme}} \code{\link{add_license}} \code{\link{add_license_header}}
+\code{\link{add_readme}}, \code{\link{add_license}}, \code{\link{add_license_header}}
 }
 
