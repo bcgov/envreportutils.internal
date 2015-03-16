@@ -1,16 +1,44 @@
+#' Add a README.md file to the project directory
+#' 
+#' @param path Directory path (default \code{"."})
+#' @param package Is this a package or a regular project? (Default \code{FALSE})
+#' @export
+#' @seealso \code{\link{add_contributing}} \code{\link{add_license}} \code{\link{add_license_header}}
+#' @return NULL
 add_readme <- function(path = ".", package = FALSE) {
   if (package) fname <- "pkg-README.md" else fname <- "README.md"
   add_file_from_template(path, fname)    
 } 
 
+#' Add a CONTRIBUTING.md file to the project directory
+#' 
+#' @param path Directory path (default \code{"."})
+#' @export
+#' @seealso \code{\link{add_readme}} \code{\link{add_license}} \code{\link{add_license_header}}
+#' @return NULL
 add_contributing <- function(path = ".") {
   add_file_from_template(path, "CONTRIBUTING.md")
 }
 
+#' Add a CONTRIBUTING.md file to the project directory
+#' 
+#' @param path Directory path (default \code{"."})
+#' @export
+#' @seealso \code{\link{add_readme}} \code{\link{add_contributing}} \code{\link{add_license_header}}
+#' @return NULL
 add_license <- function(path = ".") {
   add_file_from_template(path, "LICENSE")
 }
 
+#' Add a file to a directory from a template in inst/templates
+#'
+#' Should really only be called by other functions
+#' 
+#' @param path Directory path (default \code{"."})
+#' @param fname the name of the template file in inst/templates
+#' @keywords internal
+#' @seealso \code{\link{add_readme}} \code{\link{add_contributing}} \code{\link{add_license}}
+#' @return NULL
 add_file_from_template <- function(path, fname) {
   if (path == ".") {
     path <- getwd()
@@ -31,6 +59,13 @@ add_file_from_template <- function(path, fname) {
   invisible(TRUE)
 }
 
+#' Add the boilerplate Apache header to the top of a source code file
+#' 
+#' @param file Path to the file
+#' @param year The year the license should apply
+#' @export
+#' @seealso \code{\link{add_license}}
+#' @return NULL
 add_license_header <- function(file, year) {
   
   license_txt <- '# Copyright YYYY Province of British Columbia
@@ -51,6 +86,7 @@ add_license_header <- function(file, year) {
   file_text <- readLines(file)
 
   writeLines(c(license_txt, file_text), file)
+  message("adding Apache boilerplate header to the top of ", file)
   
   invisible(TRUE)
 }
