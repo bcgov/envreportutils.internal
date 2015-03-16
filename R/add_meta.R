@@ -20,7 +20,7 @@ add_contributing <- function(path = ".") {
   add_file_from_template(path, "CONTRIBUTING.md")
 }
 
-#' Add a CONTRIBUTING.md file to the project directory
+#' Add a LICENSE file (Apache 2.0) to the project directory
 #' 
 #' @param path Directory path (default \code{"."})
 #' @export

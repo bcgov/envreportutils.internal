@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_meta.R
 \name{add_license}
 \alias{add_license}
-\title{Add a CONTRIBUTING.md file to the project directory}
+\title{Add a LICENSE file (Apache 2.0) to the project directory}
 \usage{
 add_license(path = ".")
 }
@@ -10,7 +10,7 @@ add_license(path = ".")
 \item{path}{Directory path (default \code{"."})}
 }
 \description{
-Add a CONTRIBUTING.md file to the project directory
+Add a LICENSE file (Apache 2.0) to the project directory
 }
 \seealso{
 \code{\link{add_readme}} \code{\link{add_contributing}} \code{\link{add_license_header}}
