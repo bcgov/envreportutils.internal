@@ -7,7 +7,7 @@
 #' @return NULL
 add_readme <- function(path = ".", package = FALSE) {
   if (package) fname <- "pkg-README.md" else fname <- "README.md"
-  add_file_from_template(path, fname)    
+  add_file_from_template(path, fname, outfile = "README.md")  
 } 
 
 #' Add a CONTRIBUTING.md file to the project directory
@@ -43,20 +43,25 @@ add_license <- function(path = ".", package_desc = FALSE) {
 #' 
 #' @param path Directory path (default \code{"."})
 #' @param fname the name of the template file in inst/templates
+#' @param outfile name of the file to be written, if different from the name of the template file
 #' @keywords internal
 #' @seealso \code{\link{add_readme}}, \code{\link{add_contributing}}, \code{\link{add_license}}
 #' @return NULL
-add_file_from_template <- function(path, fname) {
+add_file_from_template <- function(path, fname, outfile = NULL) {
   if (path == ".") {
     path <- getwd()
   }
   
-  outfile <- file.path(path, fname)
+  if (is.null(outfile)) {
+    outfile <- file.path(path, fname)
+  } else {
+    outfile <- file.path(path, outfile)
+  }
   
   if (file.exists(outfile)) {
-    warning(paste(fname, "already exists. Not adding a new one"))
+    warning(paste(outfile, "already exists. Not adding a new one"))
   } else {
-    message(paste("Adding file", fname))
+    message(paste("Adding file", outfile))
     
     template_path <- system.file(file.path("templates", fname), 
                                  package = "envreportbc")

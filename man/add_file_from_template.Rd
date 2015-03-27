@@ -4,12 +4,14 @@
 \alias{add_file_from_template}
 \title{Add a file to a directory from a template in inst/templates}
 \usage{
-add_file_from_template(path, fname)
+add_file_from_template(path, fname, outfile = NULL)
 }
 \arguments{
 \item{path}{Directory path (default \code{"."})}
 
 \item{fname}{the name of the template file in inst/templates}
+
+\item{outfile}{name of the file to be written, if different from the name of the template file}
 }
 \description{
 Should really only be called by other functions
