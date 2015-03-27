@@ -23,6 +23,8 @@ add_contributing <- function(path = ".") {
 #' Add a LICENSE file (Apache 2.0) to the project directory
 #' 
 #' @param path Directory path (default \code{"."})
+#' @param package_desc Should the license be added to the DESCRIPTION file if this is a package?
+#'
 #' @export
 #' @seealso \code{\link{add_readme}}, \code{\link{add_contributing}}, \code{\link{add_license_header}}
 #' @return NULL

@@ -4,10 +4,12 @@
 \alias{add_license}
 \title{Add a LICENSE file (Apache 2.0) to the project directory}
 \usage{
-add_license(path = ".")
+add_license(path = ".", package_desc = FALSE)
 }
 \arguments{
 \item{path}{Directory path (default \code{"."})}
+
+\item{package_desc}{Should the license be added to the DESCRIPTION file if this is a package?}
 }
 \description{
 Add a LICENSE file (Apache 2.0) to the project directory
