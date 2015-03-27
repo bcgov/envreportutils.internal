@@ -26,8 +26,13 @@ add_contributing <- function(path = ".") {
 #' @export
 #' @seealso \code{\link{add_readme}}, \code{\link{add_contributing}}, \code{\link{add_license_header}}
 #' @return NULL
-add_license <- function(path = ".") {
+add_license <- function(path = ".", package_desc = FALSE) {
   add_file_from_template(path, "LICENSE")
+  if (package_desc) {
+    desc <- readLines(file.path(path, "DESCRIPTION"))
+    desc[grep("License:", desc)] <- "License: Apache License (== 2.0) | file LICENSE"
+    writeLines(desc, "DESCRIPTION")
+  }
 }
 
 #' Add a file to a directory from a template in inst/templates
