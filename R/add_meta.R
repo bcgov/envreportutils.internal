@@ -7,17 +7,22 @@
 #' @return NULL
 add_readme <- function(path = ".", package = FALSE) {
   if (package) fname <- "pkg-README.md" else fname <- "README.md"
-  add_file_from_template(path, fname, outfile = "README.md")  
+  add_file_from_template(path, fname, outfile = "README.md")
+  invisible(TRUE)
 } 
 
 #' Add a CONTRIBUTING.md file to the project directory
 #' 
 #' @param path Directory path (default \code{"."})
+#' @param package Is this a package or a regular project? (Default \code{FALSE}). 
+#'                If \code{TRUE}, "CONTRIBUTING.md" will be added to .Rbuildignore
 #' @export
 #' @seealso \code{\link{add_readme}}, \code{\link{add_license}}, \code{\link{add_license_header}}
 #' @return NULL
-add_contributing <- function(path = ".") {
+add_contributing <- function(path = ".", package = FALSE) {
   add_file_from_template(path, "CONTRIBUTING.md")
+  if (package) add_to_rbuildignore(path = path, text = "CONTRIBUTING.md")
+  invisible(TRUE)
 }
 
 #' Add a LICENSE file (Apache 2.0) to the project directory
@@ -35,6 +40,7 @@ add_license <- function(path = ".", package_desc = FALSE) {
     desc[grep("License:", desc)] <- "License: Apache License (== 2.0) | file LICENSE"
     writeLines(desc, "DESCRIPTION")
   }
+  invisible(TRUE)
 }
 
 #' Add a file to a directory from a template in inst/templates
@@ -100,5 +106,23 @@ add_license_header <- function(file, year) {
   writeLines(c(license_txt, file_text), file)
   message("adding Apache boilerplate header to the top of ", file)
   
+  invisible(TRUE)
+}
+
+#' Add text to Rbuildignore
+#'
+#' @param path 
+#' @param text 
+#'
+#' @return TRUE
+#' @keywords internal
+add_to_rbuildignore <- function(path, text) {
+  fpath <- file.path(path, ".Rbuildignore")
+  rbuildignore <- character(0)
+  if (file.exists(fpath)) rbuildignore <- readLines(fpath)
+  if (!any(grepl(text, rbuildignore))) { 
+    rbuildignore <- c(rbuildignore, text)
+    writeLines(rbuildignore, fpath)
+  }
   invisible(TRUE)
 }

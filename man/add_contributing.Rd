@@ -4,10 +4,13 @@
 \alias{add_contributing}
 \title{Add a CONTRIBUTING.md file to the project directory}
 \usage{
-add_contributing(path = ".")
+add_contributing(path = ".", package = FALSE)
 }
 \arguments{
 \item{path}{Directory path (default \code{"."})}
+
+\item{package}{Is this a package or a regular project? (Default \code{FALSE}).
+If \code{TRUE}, "CONTRIBUTING.md" will be added to .Rbuildignore}
 }
 \description{
 Add a CONTRIBUTING.md file to the project directory
