@@ -22,12 +22,12 @@ knitr::opts_chunk$set(eval=FALSE)
 ## Starting a new project with our own git server as your origin
 
 1) In your bash shell, make new directory for the new indicator in 
-  `D:/git_server/[topic]`, then create a *bare* git repo.  This will be the 
+  `D:/git_server/[file_name]`, then create a *bare* git repo.  This will be the 
   origin you push and pull from (our *local Github*). For this example we will 
   create a "tarballs" indicator in the "Contaminants" topic.
 
 ```
-cd "D:/git_server/contaminants"
+cd "D:/git_server/"
 mkdir tarballs
 cd tarballs
 git init --bare
@@ -39,6 +39,8 @@ git init --bare
 envreportbc::install_local("envreportbc")
 library("envreportbc")
 ```
+
+Trouble shooting - install_local sometimes conflicts with the same call in devtools so if you have trouble make sure devtools is not installed.
 
 3) Next, use the function `indicator_skeleton` to create the project. When cloning
   a repo, you should have `path` set to your base development directory as the 
@@ -54,7 +56,7 @@ indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE,
 
 This will clone the empty `tarballs` repository into a new folder called `tarballs`, 
 add a default `.gitignore` file, start an RStudio project, and add the boilerplate 
-indicator file/folder structure. You can then open the project from RStudio 
+indicator file/folder structure. For local git server folders you can ignore the LICENSE file by using apache = FALSE. You can then open the project from RStudio 
 and you're off to the races!
 
 ## Starting a new project using GitHub as your origin
@@ -135,7 +137,7 @@ git branch ##lists the branches
 git checkout [branchname]
 git pull origin [banchname]
 ```
-
+- Move the origin file to new location
 - Then change the url of the origin (likely to our local git_server directory)
 
 ```
