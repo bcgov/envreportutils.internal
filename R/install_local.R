@@ -20,7 +20,7 @@ install_dev <- function(pkgname, install_path = NULL) {
   if (nrow(pkgs) > 1) {
     pkgrow <- pkgs[which.max(pkgs$Version),]
     warning("More than one version of ", pkgname, 
-            " found. Installing latest version (", pkgrow$Version, ")")
+            " found. Installed latest version (", pkgrow$Version, ")")
     pkg_file <- pkgrow$path
   } else {
     pkg_file <- pkgs$path
@@ -29,17 +29,19 @@ install_dev <- function(pkgname, install_path = NULL) {
   is_loaded <- paste0("package:",pkgname) %in% search()
   
   if (is_loaded) {
-    pass <- readline("Package is currently loaded. Should it be unloaded before attempting installation (y/n)?")
+    pass <- readline("Package is currently loaded. Should it be unloaded before attempting installation (y/n)? ")
     if (tolower(pass) == "y") {
       unloadNamespace(pkgname)
+      on.exit({
+        message("Reloading package ", pkgname)
+        library(pkgname, character.only = TRUE, quietly = TRUE)
+      })
     }
   }
   
   install.packages(pkg_file, repos = NULL)
-  
-  if (is_loaded) library(pkgname, character.only = TRUE, quietly = TRUE)
-  
-  invisible()
+
+  invisible(NULL)
   
 }
 
