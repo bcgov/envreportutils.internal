@@ -3,7 +3,7 @@ knitr::opts_chunk$set(eval=FALSE)
 
 
 ## ------------------------------------------------------------------------
-#  envreportbc::install_local("envreportbc")
+#  envreportbc::install_dev("envreportbc")
 #  library("envreportbc")
 
 ## ------------------------------------------------------------------------

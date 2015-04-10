@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="date" content="2015-03-06" />
+<meta name="date" content="2015-04-10" />
 
 <title>Setting Up a New EnvReportBC Indicator Project in RStudio</title>
 
@@ -52,7 +52,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <div id="header">
 <h1 class="title">Setting Up a New EnvReportBC Indicator Project in RStudio</h1>
-<h4 class="date"><em>2015-03-06</em></h4>
+<h4 class="date"><em>2015-04-10</em></h4>
 </div>
 
 <div id="TOC">
@@ -71,7 +71,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <div id="various-use-cases" class="section level1">
 <h1>Various Use Cases</h1>
-<p><strong>Note: This instructions assume you have mapped <code>I:/SPD/Science Policy &amp; Economics/State of Environment/_dev/</code> to your <code>D:/</code> drive</strong></p>
+<p><strong>Note: These instructions assume you have mapped <code>I:/SPD/Science Policy &amp; Economics/State of Environment/_dev/</code> to your <code>D:/</code> drive</strong></p>
 <div id="starting-a-new-project-with-our-own-git-server-as-your-origin" class="section level2">
 <h2>Starting a new project with our own git server as your origin</h2>
 <ol style="list-style-type: decimal">
@@ -84,7 +84,7 @@ git init --bare</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Open <strong>RStudio</strong> and load the <code>envreportbc</code> library (install/upate if need be):</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r">envreportbc::<span class="kw">install_local</span>(<span class="st">&quot;envreportbc&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">envreportbc::<span class="kw">install_dev</span>(<span class="st">&quot;envreportbc&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;envreportbc&quot;</span>)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Next, use the function <code>indicator_skeleton</code> to create the project. When cloning a repo, you should have <code>path</code> set to your base development directory as the repository will be cloned into a new folder. Here we use <code>setwd(&quot;c:/_dev/&quot;)</code> to set our working directory, and then can leave the <code>path</code> argument as <code>&quot;.&quot;</code> (the default):</li>

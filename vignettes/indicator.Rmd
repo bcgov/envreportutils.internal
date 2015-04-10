@@ -17,7 +17,7 @@ knitr::opts_chunk$set(eval=FALSE)
 
 # Various Use Cases
 
-**Note: This instructions assume you have mapped `I:/SPD/Science Policy & Economics/State of Environment/_dev/` to your `D:/` drive**
+**Note: These instructions assume you have mapped `I:/SPD/Science Policy & Economics/State of Environment/_dev/` to your `D:/` drive**
 
 ## Starting a new project with our own git server as your origin
 
@@ -36,7 +36,7 @@ git init --bare
 2) Open **RStudio** and load the `envreportbc` library (install/upate if need be):
 
 ```{r}
-envreportbc::install_local("envreportbc")
+envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 

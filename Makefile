@@ -13,10 +13,11 @@ check:
 build:
 	Rscript -e "library(devtools); build('.'); build('.', binary=TRUE)"
 	cp ../$(PKGNAME)_$(PKGVERS).zip ../$(PKGNAME)_$(PKGVERS).tar.gz \
-	"I:/SPD/Science Policy & Economics/State of Environment/_dev/packages/"
+	"/d/packages/"
 
 install:
 	Rscript -e "library(devtools); install('.', build_vignettes = TRUE)"
 	
 vignette:
-	Rscript -e "library(devtools); build_vignettes('.')""
+	rm -rf inst/doc/
+	Rscript -e "library(devtools); build_vignettes('.')"

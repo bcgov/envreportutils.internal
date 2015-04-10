@@ -6,9 +6,9 @@
 #' @export
 #' @return None
 #' @examples \dontrun{
-#' install_local("envreportutils")
+#' install_dev("envreportutils")
 #'}
-install_local <- function(pkgname, install_path = NULL) {
+install_dev <- function(pkgname, install_path = NULL) {
   
   if (is.null(install_path)) {
     install_path <- "I:/SPD/Science Policy & Economics/State of Environment/_dev/packages"
