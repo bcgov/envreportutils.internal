@@ -9,7 +9,7 @@ knitr::opts_chunk$set(eval=FALSE)
 ## ------------------------------------------------------------------------
 #  setwd("c:/_dev/")
 #  indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE,
-#                     git_clone = "D:/git_server/contaminants/tarballs")
+#                     git_clone = "D:/git_server/contaminants/tarballs.git")
 
 ## ------------------------------------------------------------------------
 #  envreportbc::install_local("envreportbc")

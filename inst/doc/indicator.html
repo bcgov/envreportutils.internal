@@ -75,24 +75,25 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="starting-a-new-project-with-our-own-git-server-as-your-origin" class="section level2">
 <h2>Starting a new project with our own git server as your origin</h2>
 <ol style="list-style-type: decimal">
-<li>In your bash shell, make new directory for the new indicator in <code>D:/git_server/[topic]</code>, then create a <em>bare</em> git repo. This will be the origin you push and pull from (our <em>local Github</em>). For this example we will create a “tarballs” indicator in the “Contaminants” topic.</li>
+<li>In your bash shell, make new directory for the new indicator in <code>D:/git_server/[file_name].git</code>, then create a <em>bare</em> git repo. This will be the origin you push and pull from (our <em>local Github</em>). For this example we will create a “tarballs” indicator in the “Contaminants” topic.</li>
 </ol>
-<pre><code>cd &quot;D:/git_server/contaminants&quot;
-mkdir tarballs
-cd tarballs
+<pre><code>cd &quot;D:/git_server/&quot;
+mkdir tarballs.git
+cd tarballs.git
 git init --bare</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Open <strong>RStudio</strong> and load the <code>envreportbc</code> library (install/upate if need be):</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r">envreportbc::<span class="kw">install_dev</span>(<span class="st">&quot;envreportbc&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;envreportbc&quot;</span>)</code></pre>
+<p>Trouble shooting - install_local sometimes conflicts with the same call in devtools package; if you have trouble make sure ‘devtools’ is not installed.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Next, use the function <code>indicator_skeleton</code> to create the project. When cloning a repo, you should have <code>path</code> set to your base development directory as the repository will be cloned into a new folder. Here we use <code>setwd(&quot;c:/_dev/&quot;)</code> to set our working directory, and then can leave the <code>path</code> argument as <code>&quot;.&quot;</code> (the default):</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;c:/_dev/&quot;</span>)
 <span class="kw">indicator_skeleton</span>(<span class="dt">path =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">bucket =</span> <span class="st">&quot;Contaminants&quot;</span>, <span class="dt">git_init =</span> <span class="ot">FALSE</span>, 
-                   <span class="dt">git_clone =</span> <span class="st">&quot;D:/git_server/contaminants/tarballs&quot;</span>)</code></pre>
-<p>This will clone the empty <code>tarballs</code> repository into a new folder called <code>tarballs</code>, add a default <code>.gitignore</code> file, start an RStudio project, and add the boilerplate indicator file/folder structure. You can then open the project from RStudio and you’re off to the races!</p>
+                   <span class="dt">git_clone =</span> <span class="st">&quot;D:/git_server/contaminants/tarballs.git&quot;</span>)</code></pre>
+<p>This will clone the empty <code>tarballs.git</code> repository into a new folder called <code>tarballs</code>, add a default <code>.gitignore</code> file, start an RStudio project, and add the boilerplate indicator file/folder structure. For local git server folders you can ignore the LICENSE file by using apache = FALSE. You can then open the project from RStudio and you’re off to the races!</p>
 </div>
 <div id="starting-a-new-project-using-github-as-your-origin" class="section level2">
 <h2>Starting a new project using GitHub as your origin</h2>
@@ -138,7 +139,8 @@ git init --bare</code></pre>
 <div id="if-you-need-to-move-an-origin" class="section level2">
 <h2>If you need to move an origin:</h2>
 <ul>
-<li>Open a shell and navigate to your local repository. Make sure all your branches are up to date by checking out each branch and pulling from the current origin</li>
+<li><p>You can check your origin by opening the shell in you local repository and using ‘git remote -v’</p></li>
+<li><p>To change the prigin, open a shell and navigate to your local repository. Make sure all your branches are up to date by checking out each branch and pulling from the current origin</p></li>
 </ul>
 <pre><code>cd c:/dev/[indicator]
 git status
@@ -146,9 +148,10 @@ git branch ##lists the branches
 git checkout [branchname]
 git pull origin [banchname]</code></pre>
 <ul>
+<li>Move the origin file to new location</li>
 <li>Then change the url of the origin (likely to our local git_server directory)</li>
 </ul>
-<pre><code>git remote set-url origin &quot;D:/git_server/[topic]/[indicator]&quot;
+<pre><code>git remote set-url origin &quot;D:/git_server/[indicator].git&quot;
 git push origin --all</code></pre>
 </div>
 <div id="if-your-push-and-pull-buttons-in-rstudio-are-greyed-out" class="section level2">
