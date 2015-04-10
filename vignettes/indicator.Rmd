@@ -40,8 +40,6 @@ envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
-Trouble shooting - install_local sometimes conflicts with the same call in devtools
-package; if you have trouble make sure 'devtools' is not installed.
 
 3) Next, use the function `indicator_skeleton` to create the project. When cloning
   a repo, you should have `path` set to your base development directory as the 
@@ -68,7 +66,7 @@ indicator file/folder structure. For local git server folders you can ignore the
 2) Open **RStudio** and load the `envreportbc` library (install/upate if need be):
 
 ```{r}
-envreportbc::install_local("envreportbc")
+envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
@@ -100,7 +98,7 @@ project from RStudio and you're off to the races!
 1) Open **RStudio** and load the `envreportbc` library (install/upate if need be):
 
 ```{r}
-envreportbc::install_local("envreportbc")
+envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
