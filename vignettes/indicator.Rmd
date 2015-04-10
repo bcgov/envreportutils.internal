@@ -22,14 +22,14 @@ knitr::opts_chunk$set(eval=FALSE)
 ## Starting a new project with our own git server as your origin
 
 1) In your bash shell, make new directory for the new indicator in 
-  `D:/git_server/[file_name]`, then create a *bare* git repo.  This will be the 
+  `D:/git_server/[file_name].git`, then create a *bare* git repo.  This will be the 
   origin you push and pull from (our *local Github*). For this example we will 
   create a "tarballs" indicator in the "Contaminants" topic.
 
 ```
 cd "D:/git_server/"
-mkdir tarballs
-cd tarballs
+mkdir tarballs.git
+cd tarballs.git
 git init --bare
 ```
 
@@ -40,7 +40,8 @@ envreportbc::install_local("envreportbc")
 library("envreportbc")
 ```
 
-Trouble shooting - install_local sometimes conflicts with the same call in devtools so if you have trouble make sure devtools is not installed.
+Trouble shooting - install_local sometimes conflicts with the same call in devtools
+package; if you have trouble make sure 'devtools' is not installed.
 
 3) Next, use the function `indicator_skeleton` to create the project. When cloning
   a repo, you should have `path` set to your base development directory as the 
@@ -51,13 +52,12 @@ Trouble shooting - install_local sometimes conflicts with the same call in devto
 ```{r}
 setwd("c:/_dev/")
 indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
-                   git_clone = "D:/git_server/contaminants/tarballs")
+                   git_clone = "D:/git_server/contaminants/tarballs.git")
 ```
 
-This will clone the empty `tarballs` repository into a new folder called `tarballs`, 
+This will clone the empty `tarballs.git` repository into a new folder called `tarballs`, 
 add a default `.gitignore` file, start an RStudio project, and add the boilerplate 
-indicator file/folder structure. For local git server folders you can ignore the LICENSE file by using apache = FALSE. You can then open the project from RStudio 
-and you're off to the races!
+indicator file/folder structure. For local git server folders you can ignore the LICENSE file by using apache = FALSE. You can then open the project from RStudio and you're off to the races!
 
 ## Starting a new project using GitHub as your origin
 
@@ -127,7 +127,10 @@ indicator_skeleton(path = "tarballs", bucket = "Contaminants", git_init = FALSE)
 
 ## If you need to move an origin:
 
-- Open a shell and navigate to your local repository.  Make sure all your 
+- You can check your origin by opening the shell in you local repository 
+and using 'git remote -v'
+
+- To change the prigin, open a shell and navigate to your local repository.  Make sure all your 
 branches are up to date by checking out each branch and pulling from the current origin
 
 ```
@@ -141,7 +144,7 @@ git pull origin [banchname]
 - Then change the url of the origin (likely to our local git_server directory)
 
 ```
-git remote set-url origin "D:/git_server/[topic]/[indicator]"
+git remote set-url origin "D:/git_server/[indicator].git"
 git push origin --all
 ```
 
