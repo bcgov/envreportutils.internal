@@ -11,7 +11,7 @@
 install_dev <- function(pkgname, install_path = NULL) {
   
   if (is.null(install_path)) {
-    install_path <- "I:/SPD/Science Policy & Economics/State of Environment/_dev/packages"
+    install_path <- "D:/packages"
   }
   
   pkgs <- local_packages(path = install_path)
@@ -39,7 +39,7 @@ install_dev <- function(pkgname, install_path = NULL) {
     }
   }
   
-  install.packages(pkg_file, repos = NULL)
+  install.packages(pkg_file, repos = NULL, type = "win.binary")
 
   invisible(NULL)
   
