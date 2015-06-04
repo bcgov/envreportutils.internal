@@ -1,4 +1,6 @@
+<div id="devex-badge">
 *Add a project state badge. See https://raw.githubusercontent.com/BCDevExchange/docs/master/discussion/projectstates.md*
+</div>
 
 ---
 
