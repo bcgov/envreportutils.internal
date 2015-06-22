@@ -58,6 +58,8 @@ add_file_from_template <- function(path, fname, outfile = NULL) {
     path <- getwd()
   }
   
+  if (!dir.exists(path)) dir.create(path)
+  
   if (is.null(outfile)) {
     outfile <- file.path(path, fname)
   } else {
