@@ -83,12 +83,13 @@ add_file_from_template <- function(path, fname, outfile = NULL) {
 #' 
 #' @param file Path to the file
 #' @param year The year the license should apply
+#' @param copyright_holder Copyright holder (Default "Province of British Columbia")
 #' @export
 #' @seealso \code{\link{add_license}}
 #' @return NULL
-add_license_header <- function(file, year) {
+add_license_header <- function(file, year, copyright_holder = "Province of British Columbia") {
   
-  license_txt <- '# Copyright YYYY Province of British Columbia
+  license_txt <- '# Copyright YYYY COPYRIGHT_HOLDER
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -102,6 +103,7 @@ add_license_header <- function(file, year) {
 '
   
   license_txt <- gsub("YYYY", year, license_txt)
+  license_txt <- gsub("COPYRIGHT_HOLDER", copyright_holder, license_txt)
   
   file_text <- readLines(file)
 
