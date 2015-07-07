@@ -9,7 +9,8 @@ Description: Set of functions for EnvironmentalReportingBC internal operations
 Depends: 
     R (>= 3.1.0)
 Imports: 
-    RODBC
+    RODBC, 
+    envreportutils
 License: What license is it under?
 LazyData: true
 Suggests: knitr

@@ -2,8 +2,8 @@
 #' 
 #' Creates the folder structure for a new indicator, including a template for 
 #' the printable version RMarkdown document.
-#' 
-#' @param  path location to create new indicator. If \code{"."} (the default), 
+#' @importFrom envreportutils analysis_skeleton
+#' @param path location to create new indicator. If \code{"."} (the default), 
 #'   the name of the working directory will be taken as the indicator name. If 
 #'   not \code{"."}, the last component of the given path will be used as the 
 #'   indicator name.
@@ -15,6 +15,8 @@
 #' @param git_clone the url of a git repo to clone.
 #' @param rstudio Create an Rstudio project file?
 #' @param apache Add licensing info for release under Apache 2.0? Default \code{TRUE}.
+#' @param copyright_holder the name of the copyright holder (default 
+#' "Province of British Columbia). Only necessary if adding a license
 #' @details If you are cloning a repository (\code{git_clone = "path_to_repo"}),
 #'   you should run this function from the root of your dev folder and leave 
 #'   \code{path = "."}, as the repository will be cloned into a new folder. If 
@@ -30,75 +32,17 @@
 #'                     bucket="Contaminants", 
 #'                     rstudio = TRUE)
 #' }
-indicator_skeleton <- function (path = ".", print_ver = TRUE, bucket, 
-                                git_init = TRUE, git_clone = NULL, 
-                                rstudio = TRUE, apache = TRUE) {
-
-#   now <- Sys.time()
-#   options(error = quote(error_cleanup(now)))
-#   on.exit(options(error = NULL), add = TRUE)
-  curr_dir <- getwd()
-  on.exit(setwd(curr_dir), add = TRUE)
+indicator_skeleton <- function(path = ".", print_ver = TRUE, bucket, git_init = TRUE, 
+                               git_clone = NULL, rstudio = TRUE, apache = TRUE, 
+                               copyright_holder = "Province of British Columbia") {
   
-  if (path != ".") {
-    if (file.exists(path)) {
-      stop("Directory already exists", call. = FALSE)
-    } else {
-      dir.create(path, recursive = TRUE)
-      setwd(path)
-    }
-  }
-
-  if (is.character(git_clone)) {
-    clone_git(git_clone)
-    git_init = FALSE
-    ## clone_git will run setwd(), so need to get path again
-    path <- getwd()
-  }
-  
-  ## Need to check for indicator structure
-  Rfiles <- c("01_load.R", "02_clean.R", "03_analysis.R", "04_output.R", 
-              "internal.R")
-  dirs <- c("out", "tmp")
-  
-  if (any(file.exists(Rfiles, dirs))) { ## file.exists is case-insensitive
-    #if (git) unlink(c(".git", ".gitignore", recursive = TRUE, force = TRUE)
-    stop("It looks as though you already have an indicator set up here!")
-  }
-  
-  ## Add the necessary R files and directories
-  message("Creating new indicator in ", path)
-  lapply(Rfiles, file.create)
-  lapply(dirs, dir.create)
-  add_contributing(path)
-  add_readme(path, package = FALSE)
-  
-  if (apache) {
-    add_license(path)
-    lapply(Rfiles, add_license_header, substr(Sys.Date(), 1, 4))
-  }
-  
-  if (rstudio) {
-    if (!length(list.files(pattern = "*.Rproj", ignore.case = TRUE))) add_rproj() else 
-      warning("Rproj file already exists, so not adding a new one")
-  }
+  analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
+                    rstudio = rstudio, apache = apache, 
+                    copyright_holder = copyright_holder)
   
   if (print_ver) {
     create_print_ver(bucket = bucket, name = basename(path), 
                      dir = "print_ver")
-  }
-  
-  if (git_init) {
-    if (file.exists(".git")) {
-      warning("This directory is already a git repository. Not creating a new one")
-    } else {
-      system("git init")
-    }
-  }
-  
-  if (git_init || is.character(git_clone)) {
-    write_gitignore(".Rproj.user", ".Rhistory", ".RData", "out/", "tmp/", 
-                    "internal.R", "print_ver/*.pdf")
   }
   
   invisible(TRUE)

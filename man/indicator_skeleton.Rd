@@ -5,7 +5,8 @@
 \title{Creates the framework of a new indicator development folder}
 \usage{
 indicator_skeleton(path = ".", print_ver = TRUE, bucket, git_init = TRUE,
-  git_clone = NULL, rstudio = TRUE, apache = TRUE)
+  git_clone = NULL, rstudio = TRUE, apache = TRUE,
+  copyright_holder = "Province of British Columbia")
 }
 \arguments{
 \item{path}{location to create new indicator. If \code{"."} (the default),
@@ -26,6 +27,9 @@ Sustainability, Waste, Water)}
 \item{rstudio}{Create an Rstudio project file?}
 
 \item{apache}{Add licensing info for release under Apache 2.0? Default \code{TRUE}.}
+
+\item{copyright_holder}{the name of the copyright holder (default
+"Province of British Columbia). Only necessary if adding a license}
 }
 \description{
 Creates the folder structure for a new indicator, including a template for
