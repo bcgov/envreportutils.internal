@@ -1,7 +1,7 @@
 Package: envreportbc
 Type: Package
 Title: Facilitate EnvReportBC indicator development
-Version: 0.2
+Version: 0.2.1
 Date: 2014-11-26
 Authors@R: c(person("Andy", "Teucher", role = c("aut", "cre"), email =
     "andy.teucher@gov.bc.ca"))
