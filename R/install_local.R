@@ -8,13 +8,9 @@
 #' @examples \dontrun{
 #' install_dev("envreportutils")
 #'}
-install_dev <- function(pkgname, install_path = NULL) {
-  
-  if (is.null(install_path)) {
-    install_path <- "D:/packages"
-  }
-  
-  pkgs <- local_packages(path = install_path)
+install_dev <- function(pkgname, path = "D:/packages") {
+
+  pkgs <- local_packages(path = path)
   pkgs <- pkgs[pkgs$Package == pkgname,]
   
   if (nrow(pkgs) > 1) {
@@ -48,16 +44,10 @@ install_dev <- function(pkgname, install_path = NULL) {
 
 #' List available packages developed by Environmental Reporting BC
 #'
-#' @param path = NULL The path where packages are stored. Defaults to default location on the I drive.
+#' @param path The path where packages are stored. Defaults to default location on the I drive.
 #' @export
 #' @return a data frame of packages, versions, and locations
-#' @examples \dontrun{
-#'  local_packages()
-#'}
-local_packages <- function(path = NULL) {
-  if (is.null(path)) {
-    path <- "I:/SPD/Science Policy & Economics/State of Environment/_dev/packages"
-  }
+local_packages <- function(path = "D:/packages") {
   
   if (.Platform$OS.type == "windows") {
     ext <- "zip"

@@ -4,20 +4,15 @@
 \alias{local_packages}
 \title{List available packages developed by Environmental Reporting BC}
 \usage{
-local_packages(path = NULL)
+local_packages(path = "D:/packages")
 }
 \arguments{
-\item{path}{= NULL The path where packages are stored. Defaults to default location on the I drive.}
+\item{path}{The path where packages are stored. Defaults to default location on the I drive.}
 }
 \value{
 a data frame of packages, versions, and locations
 }
 \description{
 List available packages developed by Environmental Reporting BC
-}
-\examples{
-\dontrun{
- local_packages()
-}
 }
 

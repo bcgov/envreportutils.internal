@@ -4,7 +4,7 @@
 \alias{install_dev}
 \title{Install a local envreportbc package}
 \usage{
-install_dev(pkgname, install_path = NULL)
+install_dev(pkgname, path = "D:/packages")
 }
 \arguments{
 \item{pkgname}{The name of the package}
