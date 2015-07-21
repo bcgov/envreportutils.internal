@@ -36,13 +36,13 @@ indicator_skeleton <- function(path = ".", print_ver = TRUE, bucket, git_init = 
                                git_clone = NULL, rstudio = TRUE, apache = TRUE, 
                                copyright_holder = "Province of British Columbia") {
   
-  analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
+  outpath <- analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
                     rstudio = rstudio, apache = apache, 
                     copyright_holder = copyright_holder)
   
   if (print_ver) {
-    create_print_ver(bucket = bucket, name = basename(path), 
-                     dir = "print_ver")
+    create_print_ver(bucket = bucket, name = basename(outpath), 
+                     dir = file.path(outpath, "print_ver"))
   }
   
   invisible(TRUE)
