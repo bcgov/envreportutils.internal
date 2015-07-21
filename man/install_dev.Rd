@@ -9,7 +9,7 @@ install_dev(pkgname, path = "D:/packages")
 \arguments{
 \item{pkgname}{The name of the package}
 
-\item{install_path}{= NULL the path where the package is stored. Defaults to default location on the I drive.}
+\item{path}{= NULL the path where the package is stored. Defaults to default location on the I drive.}
 }
 \value{
 None

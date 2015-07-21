@@ -2,7 +2,7 @@
 #'
 #'<full description>
 #' @param pkgname The name of the package
-#' @param  install_path = NULL the path where the package is stored. Defaults to default location on the I drive.
+#' @param path = NULL the path where the package is stored. Defaults to default location on the I drive.
 #' @export
 #' @return None
 #' @examples \dontrun{
