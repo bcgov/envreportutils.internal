@@ -18,7 +18,8 @@ install_dev <- function(pkgname, install_path = NULL) {
   pkgs <- pkgs[pkgs$Package == pkgname,]
   
   if (nrow(pkgs) > 1) {
-    pkgrow <- pkgs[which.max(pkgs$Version),]
+    maxver <- max(pkgs$Version)
+    pkgrow <- pkgs[pkgs$Version == maxver,]
     warning("More than one version of ", pkgname, 
             " found. Installed latest version (", pkgrow$Version, ")")
     pkg_file <- pkgrow$path
@@ -64,11 +65,39 @@ local_packages <- function(path = NULL) {
     ext <- "tar.gz"
   }
   
-  pkg_files <- list.files(path, pattern = paste0("_\\d+.+\\.", ext))
-  pkgs <- sapply(strsplit(pkg_files, paste0("_\\d+.+\\.", ext)), `[`, 1)
-  vers <- as.numeric(gsub(paste0(".+_(\\d+.+)\\.", ext), "\\1", pkg_files))
+  pkg_files <- list.files(path, pattern = paste0("_\\d+.+\\.", ext), full.names = TRUE)
+  descs <- lapply(pkg_files, read_desc)
+  
+  pkgs <- sapply(descs, get_pkg_name)
+  vers <- sapply(descs, get_pkg_version)
   
   data.frame(Package = pkgs, Version = vers, 
-             path = paste0(path, "/", pkg_files), 
+             path = paste0(pkg_files), 
              stringsAsFactors = FALSE)
+}
+
+read_desc <- function(file){
+  if (tools::file_ext(file) == "zip") {
+    fun <- unzip
+    zip_file <- TRUE
+    } else {
+      fun <- untar
+    }
+  files <- fun(file, list = TRUE)
+  if (zip_file) files <- files[["Name"]]
+  desc <- files[grep("/DESCRIPTION$", files)]
+  desc <- fun(file, files = desc, exdir = tempdir())
+  readLines(desc)
+}
+
+get_pkg_name <- function(desc) {
+  pkg_line <- desc[grep("Package:", desc)]
+  pkg_name <- strsplit(pkg_line, ":\\s*")[[1]][2]
+  pkg_name
+}
+
+get_pkg_version <- function(desc) {
+  vers_line <- desc[grep("Version:", desc)]
+  version <- strsplit(vers_line, ":\\s*")[[1]][2]
+  version
 }
