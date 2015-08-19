@@ -2,6 +2,7 @@
 
 export(bcgw_connect)
 export(create_print_ver)
+export(devex_badge)
 export(indicator_skeleton)
 export(install_dev)
 export(local_packages)
