@@ -61,8 +61,8 @@ If you have a bibliography, insert the filename. In-text citations are done as:
 
 #' Convert html text to Rmd for print version
 #'
-#' @param html 
-#' @param rmd 
+#' @param html path to the html file to convert from
+#' @param rmd path to target rmd (should not exist yet)
 #'
 #' @import rmarkdown
 #' @return an Rmd document

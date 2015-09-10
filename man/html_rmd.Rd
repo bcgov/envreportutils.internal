@@ -7,9 +7,9 @@
 html_rmd(html, rmd)
 }
 \arguments{
-\item{html}{}
+\item{html}{path to the html file to convert from}
 
-\item{rmd}{}
+\item{rmd}{path to target rmd (should not exist yet)}
 }
 \value{
 an Rmd document
