@@ -4,7 +4,7 @@
 \alias{set_ghostscript}
 \title{Set the environment variable for the path to the ghostscript executable.}
 \usage{
-set_ghostscript(gsfile = "C:/Program Files/gs/gs9.15/bin/gswin64c.exe")
+set_ghostscript(gsfile = "C:/Program Files/gs/gs9.16/bin/gswin64c.exe")
 }
 \arguments{
 \item{gsfile}{path to the ghostscript executable}

@@ -2,9 +2,11 @@
 
 export(bcgw_connect)
 export(create_print_ver)
+export(html_rmd)
 export(indicator_skeleton)
 export(install_dev)
 export(local_packages)
 export(slide_template)
 import(RODBC)
+import(rmarkdown)
 importFrom(envreportutils,analysis_skeleton)

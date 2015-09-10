@@ -58,3 +58,38 @@ If you have a bibliography, insert the filename. In-text citations are done as:
   
   invisible(TRUE)
 }
+
+#' Convert html text to Rmd for print version
+#'
+#' @param html 
+#' @param rmd 
+#'
+#' @import rmarkdown
+#' @return an Rmd document
+#' @export
+html_rmd <- function(html, rmd) {
+  if (!file.exists(html)) stop("file ", html, " does not exist")
+  if (file.exists(rmd)) cat_text <- TRUE else cat_text <- FALSE
+  out_dir <- normalizePath(dirname(rmd), winslash = "/")
+  out_file <- basename(rmd)
+  rmarkdown::pandoc_convert(input = html, to = "markdown", 
+                            output = file.path(out_dir, out_file))
+  lines <- readLines(file.path(out_dir, out_file))
+  start <- find_start(lines)
+  end <- find_end(lines)
+  cat(lines[start:end], sep = "\n", file = file.path(out_dir, out_file))
+}
+
+find_start <- function(lines) {
+  bucket_line <- grep("\\{\\.bucket", lines)
+  h2_lines <- grep("------", lines)
+  title_line <- min(h2_lines[h2_lines > bucket_line])
+  start <- title_line - 1
+  start
+}
+
+find_end <- function(lines) {
+  updated_line <- grep("^Updated\\s+[A-Z][a-z]{2,8}\\s+\\d{4}", lines)
+  end <- updated_line + 1
+  end
+}
