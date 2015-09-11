@@ -2,19 +2,19 @@
 % Please edit documentation in R/create_print_ver.R
 \name{html_md}
 \alias{html_md}
-\title{Convert html text to Rmd for print version}
+\title{Convert html text to markdown}
 \usage{
 html_md(html, md = tempfile(fileext = "md"))
 }
 \arguments{
 \item{html}{path to the html file to convert from}
 
-\item{rmd}{path to target rmd (should not exist yet)}
+\item{md}{path to target md (should not exist yet)}
 }
 \value{
 an Rmd document
 }
 \description{
-Convert html text to Rmd for print version
+Convert html text to markdown
 }
 

@@ -64,10 +64,10 @@ If you have a bibliography, insert the filename. In-text citations are done as:
   filepath
 }
 
-#' Convert html text to Rmd for print version
+#' Convert html text to markdown
 #'
 #' @param html path to the html file to convert from
-#' @param rmd path to target rmd (should not exist yet)
+#' @param md path to target md (should not exist yet)
 #'
 #' @import rmarkdown
 #' @return an Rmd document
@@ -105,6 +105,5 @@ parse_bucket <- function(bucket) {
   } else if (bucket == "Climate") {
     bucket <- "Climate Change"
   }
-  
   bucket
 }
