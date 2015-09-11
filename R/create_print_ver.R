@@ -81,7 +81,7 @@ html_md <- function(html, md = tempfile(fileext = "md")) {
 
 md_sections <- function(lines) {
   bucket_line <- grep("\\{\\.bucket", lines)
-  bucket <- strsplit(lines[bucket_line], "bucket|\\}")[[1]][2]
+  bucket <- parse_bucket(lines[bucket_line])
   h2_lines <- grep("------", lines)
   title_line <- min(h2_lines[h2_lines > bucket_line] - 1)
   start <- title_line + 2
@@ -94,4 +94,17 @@ find_end <- function(lines) {
   updated_line <- grep("^Updated\\s+[A-Z][a-z]{2,8}\\s+\\d{4}", lines)
   end <- updated_line + 1
   end
+}
+
+parse_bucket <- function(bucket) {
+  bucket <- strsplit(bucket, "bucket|\\}")[[1]][2]
+  if (bucket == "Land") {
+    bucket <- "Land and Forests"
+  } else if (bucket == "PlantsAndAnimals") {
+    bucket <- "Plants and Animals"
+  } else if (bucket == "Climate") {
+    bucket <- "Climate Change"
+  }
+  
+  bucket
 }
