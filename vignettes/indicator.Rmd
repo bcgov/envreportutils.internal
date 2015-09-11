@@ -11,8 +11,7 @@ vignette: >
 ---
 
 ```{r set-options, echo = FALSE}
-knitr::opts_chunk$set(eval=FALSE)
-
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
 # Various Use Cases
@@ -49,7 +48,7 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/")
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
+indicator_skeleton(path = ".", git_init = FALSE, 
                    git_clone = "D:/git_server/contaminants/tarballs.git")
 ```
 
@@ -82,7 +81,7 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/")
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
+indicator_skeleton(path = ".", git_init = FALSE, 
                    git_clone = "https://github.com/bcgov/tarballs.git")
 ```
 
@@ -108,7 +107,7 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/tarballs") ## Assuming this directory already exists)
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
+indicator_skeleton(path = ".", git_init = FALSE)
 ```
   
   - If you haven't yet created the directory, set your working directory to your
@@ -117,9 +116,20 @@ indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
     
 ```{r}
 setwd("c:/_dev")
-indicator_skeleton(path = "tarballs", bucket = "Contaminants", git_init = FALSE)
+indicator_skeleton(path = "tarballs", git_init = FALSE)
 ```
 
+## Creating a print version
+
+Once you have a mostly final and functioniong html web page for the indicator, 
+you can create the printable version:
+
+```{r}
+create_print_ver(html = "p:/indicators/sustainability/tarballs.html")
+```
+
+This will create a printable version template, converting the html to markdown,
+and adding the Rmarkdown YAML header to the RMarkdown file.
 
 # Git notes
 
