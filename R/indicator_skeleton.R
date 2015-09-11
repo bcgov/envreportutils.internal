@@ -1,16 +1,11 @@
 #' Creates the framework of a new indicator development folder
 #' 
-#' Creates the folder structure for a new indicator, including a template for 
-#' the printable version RMarkdown document.
+#' Creates the folder structure for a new indicator.
 #' @importFrom envreportutils analysis_skeleton
 #' @param path location to create new indicator. If \code{"."} (the default), 
 #'   the name of the working directory will be taken as the indicator name. If 
 #'   not \code{"."}, the last component of the given path will be used as the 
 #'   indicator name.
-#' @param  print_ver create a print version template?
-#' @param  bucket (required if print_ver = \code{TRUE}) Indicator topic (one of 
-#'   Air, Climate Change, Contaminants, Forests, Land, Plants and Animals, 
-#'   Sustainability, Waste, Water)
 #' @param git_init Create a new git repository? Logical, default \code{TRUE}.
 #' @param git_clone the url of a git repo to clone.
 #' @param rstudio Create an Rstudio project file?
@@ -28,22 +23,15 @@
 #'   \code{browseVignettes("envreportbc")} to view it.
 #' @export
 #'  @examples \donttest{
-#'  indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE, 
-#'                     bucket="Contaminants", 
-#'                     rstudio = TRUE)
+#'  indicator_skeleton(path = "c:/_dev/tarballs")
 #' }
-indicator_skeleton <- function(path = ".", print_ver = TRUE, bucket, git_init = TRUE, 
+indicator_skeleton <- function(path = ".", git_init = TRUE, 
                                git_clone = NULL, rstudio = TRUE, apache = TRUE, 
                                copyright_holder = "Province of British Columbia") {
   
-  outpath <- analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
+  analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
                     rstudio = rstudio, apache = apache, 
                     copyright_holder = copyright_holder)
-  
-  if (print_ver) {
-    create_print_ver(bucket = bucket, name = basename(outpath), 
-                     dir = file.path(outpath, "print_ver"))
-  }
   
   invisible(TRUE)
 }

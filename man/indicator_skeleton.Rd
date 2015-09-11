@@ -4,8 +4,8 @@
 \alias{indicator_skeleton}
 \title{Creates the framework of a new indicator development folder}
 \usage{
-indicator_skeleton(path = ".", print_ver = TRUE, bucket, git_init = TRUE,
-  git_clone = NULL, rstudio = TRUE, apache = TRUE,
+indicator_skeleton(path = ".", git_init = TRUE, git_clone = NULL,
+  rstudio = TRUE, apache = TRUE,
   copyright_holder = "Province of British Columbia")
 }
 \arguments{
@@ -13,12 +13,6 @@ indicator_skeleton(path = ".", print_ver = TRUE, bucket, git_init = TRUE,
 the name of the working directory will be taken as the indicator name. If
 not \code{"."}, the last component of the given path will be used as the
 indicator name.}
-
-\item{print_ver}{create a print version template?}
-
-\item{bucket}{(required if print_ver = \code{TRUE}) Indicator topic (one of
-Air, Climate Change, Contaminants, Forests, Land, Plants and Animals,
-Sustainability, Waste, Water)}
 
 \item{git_init}{Create a new git repository? Logical, default \code{TRUE}.}
 
@@ -32,8 +26,7 @@ Sustainability, Waste, Water)}
 "Province of British Columbia). Only necessary if adding a license}
 }
 \description{
-Creates the folder structure for a new indicator, including a template for
-the printable version RMarkdown document.
+Creates the folder structure for a new indicator.
 }
 \details{
 If you are cloning a repository (\code{git_clone = "path_to_repo"}),
@@ -48,9 +41,7 @@ If you are cloning a repository (\code{git_clone = "path_to_repo"}),
 }
 \examples{
 \donttest{
- indicator_skeleton(path = "c:/_dev/tarballs", print_ver = TRUE,
-                    bucket="Contaminants",
-                    rstudio = TRUE)
+ indicator_skeleton(path = "c:/_dev/tarballs")
 }
 }
 
