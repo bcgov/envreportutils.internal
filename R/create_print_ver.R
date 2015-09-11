@@ -17,11 +17,6 @@ create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
     message("Using the name of the current folder as the filename, since none was specified")
   }
   
-  md <- html_md(html)
-  
-  lines <- readLines(md)
-  sections <- md_sections(lines)
-  
   if (!file.exists(dir)) {
     dir.create(dir)
   }
@@ -32,29 +27,41 @@ create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
     stop(paste0("File ", filepath, " already exists"))
   }
   
-  writeLines(c("---", 
-               paste0("title: ", bucket), 
-               "subtitle: Insert indicator title here", 
-               "bibliography: example.bib", 
-               paste0("output:"),
-               paste0("  pdf_document:"), 
-               paste0("    template: D:/templates/print_ver_template.tex"), 
-               "---", 
-               "
+  md <- html_md(html)
+  lines <- readLines(md)
+  sections <- md_sections(lines)
+  
+  header_content <- c("---", 
+                      paste0("title: ", sections$bucket), 
+                      paste0("subtitle: ", sections$title), 
+                      "bibliography: example.bib", 
+                      paste0("output:"),
+                      paste0("  pdf_document:"), 
+                      paste0("    template: D:/templates/print_ver_template.tex"), 
+                      "---")
+  
+  instructions <- "
 <!--
 Instructions:
 
-Set title as one of: Air, Climate Change, Contaminants, Forests, Land, 
-                     Plants and Animals, Sustainability, Waste, Water
-
-Set subtitle as the indicator title (e.g., 'Trends in Tar Ball deposition in BC (1876-1921)')
+The text will be littered with divs etc. You will need to remove them and 
+replace them with knitr code chunks in the appropriate places.
 
 If you have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->"
-  ), filepath)
   
-  invisible(TRUE)
+  main_content <- lines[sections$start:sections$end]
+  
+  conn <- file(filepath, open = "w")
+  
+  writeLines(header_content, conn)
+  writeLines(instructions, conn)
+  writeLines(main_content, conn)
+  
+  close(conn)
+  
+  filepath
 }
 
 #' Convert html text to Rmd for print version
@@ -71,8 +78,6 @@ html_md <- function(html, md = tempfile(fileext = "md")) {
                             output = md)
   md
 }
-
-cat(lines[start:end], sep = "\n", file = file.path(out_dir, out_file))
 
 md_sections <- function(lines) {
   bucket_line <- grep("\\{\\.bucket", lines)
