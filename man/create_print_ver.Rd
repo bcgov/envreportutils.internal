@@ -4,11 +4,10 @@
 \alias{create_print_ver}
 \title{Create a print version starter based on the template}
 \usage{
-create_print_ver(bucket = NULL, name = NULL, dir = "print_ver")
+create_print_ver(html = NULL, name = NULL, dir = "print_ver")
 }
 \arguments{
-\item{bucket}{Indicator topic (one of Air, Climate Change, Contaminants,
-Forests, Land, Plants and Animals, Sustainability, Waste, Water)}
+\item{html}{Path to the html file to convert from}
 
 \item{name}{Short name which will form the base name of the .Rmd file}
 

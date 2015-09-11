@@ -2,7 +2,7 @@
 
 export(bcgw_connect)
 export(create_print_ver)
-export(html_rmd)
+export(html_md)
 export(indicator_skeleton)
 export(install_dev)
 export(local_packages)
