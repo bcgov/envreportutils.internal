@@ -47,7 +47,8 @@ Instructions:
 The text will be littered with divs etc. You will need to remove them and 
 replace them with knitr code chunks in the appropriate places.
 
-If you have a bibliography, insert the filename. In-text citations are done as:
+If you don't have a bibliography, delete the bibliography line in the YAML header.
+If you do have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->"
   
