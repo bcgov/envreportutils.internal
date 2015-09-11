@@ -2,27 +2,25 @@
 #'
 #'<full description of function>
 #'
-#'@param  bucket Indicator topic (one of Air, Climate Change, Contaminants, 
-#'  Forests, Land, Plants and Animals, Sustainability, Waste, Water)
-#'@param  name Short name which will form the base name of the .Rmd file
-#'@param  dir Folder in which to place resulting .Rmd file. Default is
+#'@param html Path to the html file to convert from
+#'@param name Short name which will form the base name of the .Rmd file
+#'@param dir Folder in which to place resulting .Rmd file. Default is
 #'  /code{print_ver} inside the current working directory
 #'@export
 #' @examples \donttest{
 #'
 #'}
-create_print_ver <- function(bucket = NULL, name = NULL, dir = "print_ver") {
-  
-  bucket <- paste0(toupper(substring(bucket, 1, 1)), substring(bucket, 2))
-  if (!bucket %in% c("Air", "Climate Change", "Contaminants", "Forests", "Land", 
-                     "Plants and Animals", "Sustainability", "Waste", "Water")) {
-    stop("Invalid topic name supplied to 'bucket'. Print version not created.", call. = FALSE)
-  }
+create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
   
   if (is.null(name)) {
     name <- basename(getwd())
     message("Using the name of the current folder as the filename, since none was specified")
   }
+  
+  md <- html_md(html)
+  
+  lines <- readLines(md)
+  sections <- md_sections(lines)
   
   if (!file.exists(dir)) {
     dir.create(dir)
@@ -67,25 +65,24 @@ If you have a bibliography, insert the filename. In-text citations are done as:
 #' @import rmarkdown
 #' @return an Rmd document
 #' @export
-html_rmd <- function(html, rmd) {
+html_md <- function(html, md = tempfile(fileext = "md")) {
   if (!file.exists(html)) stop("file ", html, " does not exist")
-  if (file.exists(rmd)) cat_text <- TRUE else cat_text <- FALSE
-  out_dir <- normalizePath(dirname(rmd), winslash = "/")
-  out_file <- basename(rmd)
   rmarkdown::pandoc_convert(input = html, to = "markdown", 
-                            output = file.path(out_dir, out_file))
-  lines <- readLines(file.path(out_dir, out_file))
-  start <- find_start(lines)
-  end <- find_end(lines)
-  cat(lines[start:end], sep = "\n", file = file.path(out_dir, out_file))
+                            output = md)
+  md
 }
 
-find_start <- function(lines) {
+cat(lines[start:end], sep = "\n", file = file.path(out_dir, out_file))
+
+md_sections <- function(lines) {
   bucket_line <- grep("\\{\\.bucket", lines)
+  bucket <- strsplit(lines[bucket_line], "bucket|\\}")[[1]][2]
   h2_lines <- grep("------", lines)
-  title_line <- min(h2_lines[h2_lines > bucket_line])
-  start <- title_line - 1
-  start
+  title_line <- min(h2_lines[h2_lines > bucket_line] - 1)
+  start <- title_line + 2
+  title <- lines[title_line]
+  end <- find_end(lines)
+  list(start = start, bucket = bucket, title = title, end = end)
 }
 
 find_end <- function(lines) {
