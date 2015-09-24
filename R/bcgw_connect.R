@@ -31,7 +31,7 @@ getPass <- function(){
   #Label  
   tkgrid(tklabel(wnd,text = "Enter password:"))  
   #Password box
-  passBox <- tkentry(wnd, textvariable = passVar,show = "*",)
+  passBox <- tkentry(wnd, textvariable = passVar,show = "*")
   tkgrid(passBox)
   tkfocus(wnd)
   #Hitting return will also submit password
