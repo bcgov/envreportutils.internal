@@ -10,19 +10,9 @@
 #'}
 install_dev <- function(pkgname, path = "D:/packages") {
 
-  pkgs <- local_packages(path = path)
-  pkgs <- pkgs[pkgs$Package == pkgname,]
-  
-  if (nrow(pkgs) > 1) {
-    maxver <- max(pkgs$Version)
-    pkgrow <- pkgs[pkgs$Version == maxver,]
-    warning("More than one version of ", pkgname, 
-            " found. Installed latest version (", pkgrow$Version, ")")
-    pkg_file <- pkgrow$path
-  } else {
-    pkg_file <- pkgs$path
-  }
-  
+  pkgs <- local_packages(path = path, pkg = pkgname)
+  pkg_file <- pkgs$path
+
   is_loaded <- paste0("package:",pkgname) %in% search()
   
   if (is_loaded) {
@@ -44,10 +34,12 @@ install_dev <- function(pkgname, path = "D:/packages") {
 
 #' List available packages developed by Environmental Reporting BC
 #'
+#' @param pkg the name of a package (optional)
 #' @param path The path where packages are stored. Defaults to default location on the I drive.
+#'
 #' @export
 #' @return a data frame of packages, versions, and locations
-local_packages <- function(path = "D:/packages") {
+local_packages <- function(path = "D:/packages", pkg = NULL) {
   
   if (.Platform$OS.type == "windows") {
     ext <- "zip"
@@ -55,17 +47,29 @@ local_packages <- function(path = "D:/packages") {
     ext <- "tar.gz"
   }
   
-  pkg_files <- list.files(path, pattern = paste0("_\\d+.+\\.", ext), full.names = TRUE)
+  pkg_files <- list.files(path, pattern = paste0(pkg, "_\\d+.+\\.", ext), full.names = TRUE)
   descs <- lapply(pkg_files, read_desc)
   
   pkgs <- sapply(descs, get_pkg_name)
   vers <- sapply(descs, get_pkg_version)
   
-  data.frame(Package = pkgs, Version = vers, 
-             path = paste0(pkg_files), 
-             stringsAsFactors = FALSE)
+  pkgdf <- data.frame(Package = pkgs, Version = vers, 
+                      path = paste0(pkg_files), 
+                      stringsAsFactors = FALSE)
+  
+  if (!is.null(pkg)) {
+    pkgdf <- pkgdf[pkgdf$Package == pkg,]
+    
+    if (nrow(pkgdf) > 1) {
+      maxver <- max(pkgdf$Version)
+      pkgdf <- pkgdf[pkgdf$Version == maxver,]
+    }
+  }
+  
+  pkgdf
 }
 
+#' @importFrom utils unzip untar
 read_desc <- function(file){
   if (tools::file_ext(file) == "zip") {
     fun <- unzip
