@@ -11,10 +11,6 @@
 #'
 #'}
 bcgw_connect <- function(user, ...) {
-  if (!require("RODBC", character.only = TRUE)) {
-    stop("You must have the RODBC package installed to use this function")
-  }
-
   bit_64 <- R.Version()$arch == "x86_64"
   
   if (bit_64) {
@@ -23,7 +19,7 @@ bcgw_connect <- function(user, ...) {
   
   password <- getPass()
   
-  odbcConnect("BCGW", user, password, ...)
+  RODBC::odbcConnect("BCGW", user, password, ...)
 }
 
 getPass <- function(){  
