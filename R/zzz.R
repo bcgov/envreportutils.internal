@@ -9,6 +9,7 @@
                           "'http://ghostscript.com/download/gsdnld.html' and ",
                           "run envreportbc:::set_ghostscript('path_to_executable')")
   }
+  invisible()
 }
 
 #' Set the environment variable for the path to the ghostscript executable.

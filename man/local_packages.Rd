@@ -4,10 +4,12 @@
 \alias{local_packages}
 \title{List available packages developed by Environmental Reporting BC}
 \usage{
-local_packages(path = "D:/packages")
+local_packages(path = "D:/packages", pkg = NULL)
 }
 \arguments{
 \item{path}{The path where packages are stored. Defaults to default location on the I drive.}
+
+\item{pkg}{the name of a package (optional)}
 }
 \value{
 a data frame of packages, versions, and locations
