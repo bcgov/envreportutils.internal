@@ -11,8 +11,7 @@ vignette: >
 ---
 
 ```{r set-options, echo = FALSE}
-knitr::opts_chunk$set(eval=FALSE)
-
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
 # Various Use Cases
@@ -40,8 +39,6 @@ envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
-Trouble shooting - install_local sometimes conflicts with the same call in devtools
-package; if you have trouble make sure 'devtools' is not installed.
 
 3) Next, use the function `indicator_skeleton` to create the project. When cloning
   a repo, you should have `path` set to your base development directory as the 
@@ -51,7 +48,7 @@ package; if you have trouble make sure 'devtools' is not installed.
 
 ```{r}
 setwd("c:/_dev/")
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
+indicator_skeleton(path = ".", git_init = FALSE, 
                    git_clone = "D:/git_server/contaminants/tarballs.git")
 ```
 
@@ -68,7 +65,7 @@ indicator file/folder structure. For local git server folders you can ignore the
 2) Open **RStudio** and load the `envreportbc` library (install/upate if need be):
 
 ```{r}
-envreportbc::install_local("envreportbc")
+envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
@@ -84,7 +81,7 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/")
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE, 
+indicator_skeleton(path = ".", git_init = FALSE, 
                    git_clone = "https://github.com/bcgov/tarballs.git")
 ```
 
@@ -100,7 +97,7 @@ project from RStudio and you're off to the races!
 1) Open **RStudio** and load the `envreportbc` library (install/upate if need be):
 
 ```{r}
-envreportbc::install_local("envreportbc")
+envreportbc::install_dev("envreportbc")
 library("envreportbc")
 ```
 
@@ -110,7 +107,7 @@ library("envreportbc")
 
 ```{r}
 setwd("c:/_dev/tarballs") ## Assuming this directory already exists)
-indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
+indicator_skeleton(path = ".", git_init = FALSE)
 ```
   
   - If you haven't yet created the directory, set your working directory to your
@@ -119,9 +116,20 @@ indicator_skeleton(path = ".", bucket = "Contaminants", git_init = FALSE)
     
 ```{r}
 setwd("c:/_dev")
-indicator_skeleton(path = "tarballs", bucket = "Contaminants", git_init = FALSE)
+indicator_skeleton(path = "tarballs", git_init = FALSE)
 ```
 
+## Creating a print version
+
+Once you have a mostly final and functioniong html web page for the indicator, 
+you can create the printable version:
+
+```{r}
+create_print_ver(html = "p:/indicators/sustainability/tarballs.html")
+```
+
+This will create a printable version template, converting the html to markdown,
+and adding the Rmarkdown YAML header to the RMarkdown file.
 
 # Git notes
 
