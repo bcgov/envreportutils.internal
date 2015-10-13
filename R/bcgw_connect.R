@@ -2,7 +2,6 @@
 #'
 #'<full description>
 #' @import tcltk
-#' @import RODBC
 #'
 #' @param user BCGW Username
 #' @param  ... Additional parameters passed on to odbcConnect
@@ -12,6 +11,9 @@
 #'
 #'}
 bcgw_connect <- function(user, ...) {
+  if (!require("RODBC", character.only = TRUE)) {
+    stop("You must have the RODBC package installed to use this function")
+  }
 
   bit_64 <- R.Version()$arch == "x86_64"
   
