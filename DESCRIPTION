@@ -5,7 +5,7 @@ Version: 0.3.1
 Date: 2014-11-26
 Authors@R: c(person("Andy", "Teucher", role = c("aut", "cre"), email =
     "andy.teucher@gov.bc.ca"))
-Description: Set of functions for EnvironmentalReportingBC internal operations
+Description: Set of functions for EnvironmentalReportingBC internal operations.
 Depends: 
     R (>= 3.1.0)
 Imports: 
@@ -13,7 +13,7 @@ Imports:
     envreportutils (>= 0.1.1),
     rmarkdown (>= 0.8),
     tcltk (>= 3.2)
-License: What license is it under?
+License: file LICENSE
 LazyData: true
 Suggests: 
     knitr, 
