@@ -7,9 +7,6 @@
 #'@param dir Folder in which to place resulting .Rmd file. Default is
 #'  /code{print_ver} inside the current working directory
 #'@export
-#' @examples \donttest{
-#'
-#'}
 create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
   
   if (is.null(name)) {

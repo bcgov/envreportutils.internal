@@ -7,9 +7,6 @@
 #' @param  ... Additional parameters passed on to odbcConnect
 #' @export
 #' @return an odbc connection
-#' @examples \dontrun{
-#'
-#'}
 bcgw_connect <- function(user, ...) {
   bit_64 <- R.Version()$arch == "x86_64"
   

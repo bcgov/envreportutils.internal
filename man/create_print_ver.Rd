@@ -17,9 +17,4 @@ create_print_ver(html = NULL, name = NULL, dir = "print_ver")
 \description{
 <full description of function>
 }
-\examples{
-\donttest{
-
-}
-}
 

@@ -17,9 +17,4 @@ an odbc connection
 \description{
 <full description>
 }
-\examples{
-\dontrun{
-
-}
-}
 
