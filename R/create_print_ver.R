@@ -2,12 +2,14 @@
 #'
 #'<full description of function>
 #'
-#'@param html Path to the html file to convert from
-#'@param name Short name which will form the base name of the .Rmd file
-#'@param dir Folder in which to place resulting .Rmd file. Default is
-#'  /code{print_ver} inside the current working directory
-#'@export
-create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
+#' @param html Path to the html file to convert from
+#' @param name Short name which will form the base name of the .Rmd file
+#' @param dir Folder in which to place resulting .Rmd file. Default is 
+#'  \code{print_ver} inside the current working directory
+#' @param bucket the indicator topic. Required if html is \code{NULL}.
+#' @param title the indicator title. Required if html is \code{NULL}.
+#' @export
+create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver", bucket = NULL, title = NULL) {
   
   if (is.null(name)) {
     name <- basename(getwd())
@@ -24,13 +26,24 @@ create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver") {
     stop(paste0("File ", filepath, " already exists"))
   }
   
-  md <- html_md(html)
-  lines <- readLines(md)
-  sections <- md_sections(lines)
+  if (is.null(html)) {
+    if (is.null(title) || is.null(bucket)) stop("You must specify a bucket and a title")
+    buckets <- get_buckets()
+    bucket <- buckets[match(tolower(bucket), tolower(buckets))]
+    if (is.na(bucket)) stop("Bucket must be one of ", paste(buckets, collapse = ", "))
+    main_content <- ""
+  } else {
+    md <- html_md(html)
+    lines <- readLines(md)
+    sections <- md_sections(lines)
+    bucket <- sections$bucket
+    title <- sections$title
+    main_content <- lines[sections$start:sections$end]
+  }
   
   header_content <- c("---", 
-                      paste0("title: ", sections$bucket), 
-                      paste0("subtitle: ", sections$title), 
+                      paste0("title: ", bucket), 
+                      paste0("subtitle: ", title), 
                       "bibliography: example.bib", 
                       paste0("output:"),
                       paste0("  pdf_document:"), 
@@ -48,8 +61,6 @@ If you don't have a bibliography, delete the bibliography line in the YAML heade
 If you do have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->"
-  
-  main_content <- lines[sections$start:sections$end]
   
   conn <- file(filepath, open = "w")
   

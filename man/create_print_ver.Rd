@@ -4,15 +4,20 @@
 \alias{create_print_ver}
 \title{Create a print version starter based on the template}
 \usage{
-create_print_ver(html = NULL, name = NULL, dir = "print_ver")
+create_print_ver(html = NULL, name = NULL, dir = "print_ver",
+  bucket = NULL, title = NULL)
 }
 \arguments{
 \item{html}{Path to the html file to convert from}
 
 \item{name}{Short name which will form the base name of the .Rmd file}
 
-\item{dir}{Folder in which to place resulting .Rmd file. Default is
-/code{print_ver} inside the current working directory}
+\item{dir}{Folder in which to place resulting .Rmd file. Default is 
+\code{print_ver} inside the current working directory}
+
+\item{bucket}{the indicator topic. Required if html is \code{NULL}.}
+
+\item{title}{the indicator title. Required if html is \code{NULL}.}
 }
 \description{
 <full description of function>

@@ -44,3 +44,7 @@ check_version <- function(pkg) {
             ". You can install it with install.packages('", pkg, "')")
   }
 }
+
+get_buckets <- function() {
+  c("Air", "Water", "Plants and Animals", "Climate Change", "Land and Forests", "Sustainability")
+}
