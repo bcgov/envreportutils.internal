@@ -6,16 +6,17 @@ Date: 2014-11-26
 Authors@R: c(person("Andy", "Teucher", role = c("aut", "cre"), email =
     "andy.teucher@gov.bc.ca"))
 Description: Set of functions for EnvironmentalReportingBC internal operations.
-Depends: 
+Depends:
     R (>= 3.1.0)
-Imports: 
-    utils, 
+Imports:
+    utils,
     envreportutils (>= 0.1.1),
     rmarkdown (>= 0.8),
     tcltk (>= 3.2)
 License: file LICENSE
 LazyData: true
-Suggests: 
-    knitr, 
+Suggests:
+    knitr,
     RODBC
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1

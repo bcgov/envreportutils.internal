@@ -14,7 +14,7 @@ package: check build install
 ## docs: build documentation with Roxygen2
 docs:
 	rm -f NAMESPACE
-	Rscript -e "library(devtools); library(methods); document('.'); check_doc('.')"
+	Rscript -e "library(devtools); library(methods); document('.'); check_man('.')"
 
 ## check: run devtools::check() (builds and runs R CMD check)
 check: docs
