@@ -22,7 +22,7 @@
 #'   You can see more examples in the package vignette. Type
 #'   \code{browseVignettes("envreportbc")} to view it.
 #' @export
-#'  @examples \donttest{
+#' @examples \donttest{
 #'  indicator_skeleton(path = "c:/_dev/tarballs")
 #' }
 indicator_skeleton <- function(path = ".", git_init = TRUE, 

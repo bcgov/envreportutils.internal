@@ -12,6 +12,9 @@
   invisible()
 }
 
+#' @importFrom utils install.packages
+NULL
+
 #' Set the environment variable for the path to the ghostscript executable.
 #' @param gsfile path to the ghostscript executable
 #' @keywords internal

@@ -39,4 +39,9 @@ If you are cloning a repository (\code{git_clone = "path_to_repo"}),
   You can see more examples in the package vignette. Type
   \code{browseVignettes("envreportbc")} to view it.
 }
+\examples{
+\donttest{
+ indicator_skeleton(path = "c:/_dev/tarballs")
+}
+}
 
