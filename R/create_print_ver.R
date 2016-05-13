@@ -43,7 +43,9 @@ html_md <- function(html, md = tempfile(fileext = "md")) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' draft_print_ver("print_ver.Rmd")
+#' }
 draft_print_ver <- function(filename) {
   rmarkdown::draft(file = filename, package = "envreportbc", 
                    template = "print_ver", create_dir = "default", 

@@ -16,6 +16,8 @@ The filename of the new document (invisibly)
 Create a draft print version based on the template
 }
 \examples{
+\dontrun{
 draft_print_ver("print_ver.Rmd")
+}
 }
 
