@@ -73,6 +73,28 @@ If you do have a bibliography, insert the filename. In-text citations are done a
   filepath
 }
 
+#' PDF specifications for EnvReportBC print version
+#'
+#' @param ... arguments passed on to pdf_document
+#' @param keep_tex keep tex file?
+#'
+#' @return pdf_document specification
+#' @export
+print_ver <- function(..., keep_tex = FALSE) {
+  
+  # get the locations of resource files located within the package
+  template <- get_resource("template.tex")
+  gphxpath <- get_resource("template_images")
+  
+  # call the base html_document function
+  rmarkdown::pdf_document(..., template = template, keep_tex = keep_tex,
+                          pandoc_args = c("--variable", paste0("gphxpath=", gphxpath, "/")))
+}
+
+get_resource <- function(resource) {
+  system.file("rmarkdown", "templates", "print_ver", "resources", resource, package = "envreportbc")
+}
+
 #' Convert html text to markdown
 #'
 #' @param html path to the html file to convert from
