@@ -1,0 +1,4 @@
+name: EnvReportBC Indicator Print Version
+description: >
+ Template for creating an a print version of an indicator
+create_dir: false

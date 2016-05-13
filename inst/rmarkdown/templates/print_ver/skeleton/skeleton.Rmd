@@ -1,0 +1,13 @@
+---
+topic: "Air, Water, Plants and Animals, Climate Change, Land and Forests,  Sustainability"
+title: "Indicator Title"
+output: envreportbc::print_ver
+---
+
+<!--
+Instructions:
+
+If you don't have a bibliography, delete the bibliography line in the YAML header.
+If you do have a bibliography, insert the filename. In-text citations are done as:
+[@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
+-->
