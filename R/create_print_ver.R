@@ -11,7 +11,8 @@ print_ver <- function(..., keep_tex = FALSE) {
   template <- get_resource("template.tex")
   gphxpath <- get_resource("template_images")
   
-  # call the base html_document function
+  # call the base html_document function, passing in the template location and 
+  # path to template images
   rmarkdown::pdf_document(..., template = template, keep_tex = keep_tex,
                           pandoc_args = c("--variable", paste0("gphxpath=", gphxpath, "/")))
 }
