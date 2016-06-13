@@ -29,6 +29,9 @@ rmargin=2.5cm,headheight=1.5cm}
 \usepackage{avant}
 
 
+%
+\usepackage{xstring}
+
 % allow landscape orientation
 \usepackage{lscape}
 
@@ -168,7 +171,11 @@ $endif$
 $if(topic)$
   \title{\vspace{-1cm}
          \flushleft{\includegraphics[height=50pt]{$topic$.png}
-                    \hspace{0.3cm}$topic$}
+                    \hspace{0.3cm}
+                    \IfStrEqCase{$topic$}{%
+                        {air}{Air}%
+                        {land}{Land & Forests}%
+                    }[Hello]%}
          \vspace{-0.5cm}
          \begin{center}
          \line(1,0){450}
