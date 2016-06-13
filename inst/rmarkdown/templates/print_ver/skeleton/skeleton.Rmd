@@ -1,5 +1,5 @@
 ---
-topic: "Air, Water, Plants and Animals, Climate Change, Land and Forests,  Sustainability"
+topic: # One of: "air", "water", "plants-and-animals", "climate-change", "land", "sustainability"
 title: "Indicator Title"
 bibliography: example.bib
 output: envreportbc::print_ver

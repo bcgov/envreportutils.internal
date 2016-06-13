@@ -32,6 +32,17 @@ rmargin=2.5cm,headheight=1.5cm}
 %
 \usepackage{xstring}
 
+\newcommand{\topictitle}[1]{
+  \IfStrEqCase{#1}{
+      {air}{Air}
+      {climate-change}{Climate Change}
+      {land}{Land \& Forests}}
+      {plants-and-animals}{Plants \& Animals}
+      {sustainability}{Sustainability}
+      {water}{Water}
+      [Hello]
+}
+
 % allow landscape orientation
 \usepackage{lscape}
 
@@ -171,11 +182,7 @@ $endif$
 $if(topic)$
   \title{\vspace{-1cm}
          \flushleft{\includegraphics[height=50pt]{$topic$.png}
-                    \hspace{0.3cm}
-                    \IfStrEqCase{$topic$}{%
-                        {air}{Air}%
-                        {land}{Land & Forests}%
-                    }[Hello]%}
+                    \hspace{0.3cm}\topictitle{$topic$}}
          \vspace{-0.5cm}
          \begin{center}
          \line(1,0){450}
