@@ -11,8 +11,6 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 .onLoad <- function(libname, pkgname) {
-  check_version("envreportbc")
-  
   if (!set_ghostscript()) {
     packageStartupMessage("You do not appear to have ghostscript installed in ", 
                           "the usual place (C:/Program Files/gs/). ",
@@ -23,9 +21,6 @@
   }
   invisible()
 }
-
-#' @importFrom utils install.packages
-NULL
 
 #' Set the environment variable for the path to the ghostscript executable.
 #' @param gsfile path to the ghostscript executable
@@ -43,18 +38,6 @@ set_ghostscript <- function(gsfile = NULL) {
     ret <- TRUE
   }
   ret
-}
-
-#' @importFrom utils packageVersion
-check_version <- function(pkg) {
-  local_version <- packageVersion(pkg)
-  server_version <- package_version(local_packages(pkg = pkg)$Version)
-  
-  if (server_version > local_version) {
-    message("There is a newer version of ", pkg, " available (", 
-            server_version, "). You have version", local_version, 
-            ". You can install it with install.packages('", pkg, "')")
-  }
 }
 
 get_buckets <- function() {
