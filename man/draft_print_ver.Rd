@@ -20,4 +20,3 @@ Create a draft print version based on the template
 draft_print_ver("print_ver.Rmd")
 }
 }
-

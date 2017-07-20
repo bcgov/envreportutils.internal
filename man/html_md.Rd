@@ -17,4 +17,3 @@ an Rmd document
 \description{
 Convert html text to markdown
 }
-

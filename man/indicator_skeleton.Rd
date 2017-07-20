@@ -6,7 +6,8 @@
 \usage{
 indicator_skeleton(path = ".", git_init = TRUE, git_clone = NULL,
   rstudio = TRUE, apache = TRUE,
-  copyright_holder = "Province of British Columbia")
+  copyright_holder = "Province of British Columbia",
+  coc_email = "andy.teucher@gov.bc.ca or stephanie.hazlitt@gov.bc.ca")
 }
 \arguments{
 \item{path}{location to create new indicator. If \code{"."} (the default), 
@@ -44,4 +45,3 @@ If you are cloning a repository (\code{git_clone = "path_to_repo"}),
  indicator_skeleton(path = "c:/_dev/tarballs")
 }
 }
-

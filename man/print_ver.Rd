@@ -17,4 +17,3 @@ pdf_document specification
 \description{
 PDF specifications for EnvReportBC print version
 }
-

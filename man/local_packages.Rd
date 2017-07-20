@@ -17,4 +17,3 @@ a data frame of packages, versions, and locations
 \description{
 List available packages developed by Environmental Reporting BC
 }
-

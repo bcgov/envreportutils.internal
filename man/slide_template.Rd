@@ -20,4 +20,3 @@ Create a slide presentation from template
 \examples{
 slide_template("my_pres", path = "presentation")
 }
-

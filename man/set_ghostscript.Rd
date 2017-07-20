@@ -16,4 +16,3 @@ logical dependent on whether or not the file exists
 Set the environment variable for the path to the ghostscript executable.
 }
 \keyword{internal}
-
