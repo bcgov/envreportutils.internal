@@ -24,10 +24,10 @@ slide_template <- function(title, path = ".") {
   if (missing(title)) stop("You must specify a title")
   if (!dir.exists(path)) dir.create(path)
   
-  envreportutils:::add_file_from_template(path, 
+  bcgovr:::add_file_from_template(path, 
                         fname = file.path("io_presentation", "presentation_template.Rmd"), 
                         outfile = paste0(title, ".Rmd"), pkg = "envreportbc")
-  envreportutils:::add_file_from_template(file.path(path, "css"), 
+  bcgovr:::add_file_from_template(file.path(path, "css"), 
                          fname = file.path("io_presentation","css","envreportbc-style.css"), 
                          outfile = "envreportbc-style.css", pkg = "envreportbc")
   
@@ -39,7 +39,7 @@ slide_template <- function(title, path = ".") {
   pngs <- file.path("io_presentation", "img", pngs)
   
   lapply(pngs, function(png) {
-    envreportutils:::add_file_from_template(file.path(path, "img"), 
+    bcgovr:::add_file_from_template(file.path(path, "img"), 
                                             fname = png, 
                                             outfile = basename(png), 
                                             pkg = "envreportbc")
