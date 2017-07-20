@@ -1,2 +1,2 @@
 inst/doc/*.html linguist-generated=true
-inst/templates/*.css linguist-vendored
+inst/templates/io_presentation/css/*.css linguist-vendored
