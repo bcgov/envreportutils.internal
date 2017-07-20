@@ -13,7 +13,7 @@
 #' Creates the framework of a new indicator development folder
 #' 
 #' Creates the folder structure for a new indicator.
-#' @importFrom envreportutils analysis_skeleton
+#' @importFrom bcgovr analysis_skeleton
 #' @param path location to create new indicator. If \code{"."} (the default), 
 #'   the name of the working directory will be taken as the indicator name. If 
 #'   not \code{"."}, the last component of the given path will be used as the 
@@ -39,11 +39,23 @@
 #' }
 indicator_skeleton <- function(path = ".", git_init = TRUE, 
                                git_clone = NULL, rstudio = TRUE, apache = TRUE, 
-                               copyright_holder = "Province of British Columbia") {
+                               copyright_holder = "Province of British Columbia", 
+                               coc_email = "andy.teucher@gov.bc.ca or stephanie.hazlitt@gov.bc.ca") {
   
-  analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
+  out_path <- bcgovr::analysis_skeleton(path = path, git_init = git_init, git_clone = git_clone, 
                     rstudio = rstudio, apache = apache, 
-                    copyright_holder = copyright_holder)
+                    copyright_holder = copyright_holder, 
+                    coc_email = coc_email)
+  
+  cat('
+## Make print version
+mon_year <- format(Sys.Date(), "%B%Y")
+outfile <- paste0("envreportbc_[indicator_name]_", mon_year, ".pdf")
+rmarkdown::render("print_ver/[indicator_name].Rmd", output_file = outfile)
+extrafont::embed_fonts(file.path("print_ver/", outfile))
+## You will likely want to "optimize pdf" in Acrobat to make the print version smaller.\n', 
+      file = normalizePath(file.path(out_path, "run_all.R"), winslash = "/"), 
+      append = TRUE)
   
   invisible(TRUE)
 }
