@@ -4,20 +4,20 @@
 
 # envreportbc
 
-R package containing templates and internal utility functions for Environmental Reporting BC
+An  package containing templates & internal utility functions for Environmental Reporting BC
 
 ### Usage
 
 Install with:
 
 ```r
-## install.packagess("devtools") # if not already installed
+## install.packages("devtools") # if not already installed
 devtools::install_github("bcgov-c/envreportbc")
 ```
 
 ### Project Status
 
-Relatively stable, but under constant development. This package contains templates for creating products with governemt and Environmental Reporting BC specific branding, and thus is maintained in a private repository.
+Relatively stable, but under constant development. This package contains templates for creating products with B.C. Government and Environmental Reporting BC specific branding, and thus is maintained in a private repository.
 
 ### Getting Help or Reporting an Issue
 
