@@ -4,7 +4,7 @@
 \name{envreportbc}
 \alias{envreportbc}
 \alias{envreportbc-package}
-\title{envreportbc.}
+\title{envreportbc}
 \description{
-envreportbc.
+The envreportbc package contains templates & internal utility functions for Environmental Reporting BC.
 }
