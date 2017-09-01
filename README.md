@@ -1,12 +1,13 @@
+# envreportbc
+
 <div id="devex-badge"><a rel="Delivery" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="In production, but maybe in Alpha or Beta. Intended to persist and be supported." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/delivery.svg" title="In production, but maybe in Alpha or Beta. Intended to persist and be supported." /></a></div>
 
----
 
-# envreportbc
+## Overview
 
 An [R](http://r-project.org) package containing templates & internal utility functions for [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=FF80E0B985F245CEA62808414D78C41B).
 
-### Usage
+## Usage
 
 Install with:
 
@@ -15,21 +16,21 @@ Install with:
 devtools::install_github("bcgov-c/envreportbc")
 ```
 
-### Project Status
+## Project Status
 
 Relatively stable, but under constant development. This package contains templates for creating products with B.C. Government and Environmental Reporting BC specific branding, and thus is maintained in a private repository.
 
-### Getting Help or Reporting an Issue
+## Getting Help or Reporting an Issue
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov-c/envreportbc/issues/).
 
-### How to Contribute
+## How to Contribute
 
 If you would like to contribute, please see our [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-### License
+## License
 
     Copyright 2017 Province of British Columbia
 
