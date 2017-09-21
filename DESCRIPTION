@@ -10,12 +10,13 @@ Depends:
     R (>= 3.1.0)
 Imports:
     rmarkdown (>= 0.8),
-    tcltk (>= 3.2)
+    tcltk (>= 3.2),
+    bcgovr
 Suggests:
     knitr,
     RODBC
 Remotes:
-    bcgov/bgovr
+    bcgov/bcgovr
 License: file LICENSE
 LazyData: true
 VignetteBuilder: knitr
