@@ -26,18 +26,15 @@
 #' @param gsfile path to the ghostscript executable
 #' @keywords internal
 #' @return logical dependent on whether or not the file exists
-set_ghostscript <- function(gsfile = NULL) {
-  if (is.null(gsfile)) {
-    gsfile <- list.files("C:/Program Files/gs", recursive = TRUE, 
-                         full.names = TRUE, pattern = "gswin(32|64)c\\.exe")
-    gsfile <- gsfile[length(gsfile)] # If more than one, get the last, should be most recent
+set_ghostscript <- function(gsfile = "") {
+  gs_path <- tools::find_gs_cmd(gsfile)
+  
+  if (nzchar(gs_path)) {
+    Sys.setenv(R_GSCMD = gs_path)
+    return(TRUE)
+  } else {
+    return(FALSE)
   }
-  ret <- FALSE
-  if (file.exists(gsfile)) {
-    Sys.setenv(R_GSCMD = gsfile)
-    ret <- TRUE
-  }
-  ret
 }
 
 get_buckets <- function() {
