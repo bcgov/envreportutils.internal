@@ -4,7 +4,7 @@
 \alias{set_ghostscript}
 \title{Set the environment variable for the path to the ghostscript executable.}
 \usage{
-set_ghostscript(gsfile = NULL)
+set_ghostscript(gsfile = "")
 }
 \arguments{
 \item{gsfile}{path to the ghostscript executable}
