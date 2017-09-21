@@ -19,7 +19,9 @@
 #' @export
 #'
 #' @examples
-#' slide_template("my_pres", path = "presentation")
+#' \dontrun{
+#'   slide_template("my_pres", path = "presentation")
+#' }
 slide_template <- function(title, path = ".") {
   if (missing(title)) stop("You must specify a title")
   if (!dir.exists(path)) dir.create(path)
