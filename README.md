@@ -5,7 +5,9 @@
 
 ## Overview
 
-An [R](http://r-project.org) package containing templates & internal utility functions for [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=FF80E0B985F245CEA62808414D78C41B).
+An [R](http://r-project.org) package containing templates & internal utility functions for [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=FF80E0B985F245CEA62808414D78C41B). 
+
+You can visit the [Wiki](https://github.com/bcgov-c/envreportbc/wiki/EnvReportBC-Team-Wiki) to find documentation on tools and related program work flows.
 
 ## Usage
 
