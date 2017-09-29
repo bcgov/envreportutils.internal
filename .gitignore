@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 inst/templates/io_presentation/presentation_template.html
+.DS_Store
