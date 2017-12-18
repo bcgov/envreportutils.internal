@@ -4,7 +4,7 @@
 
 ```r
 remove.packages("envreportbc")
-remotes::install_github("bcgov/envreportutils.internal")
+remotes::install_github("bcgov-c/envreportutils.internal")
 ```
 
 # envreportbc 0.5.1
