@@ -1,3 +1,12 @@
+# envreportutils.internal 0.6.0
+
+* Renamed package to envreportutils.internal. please run:
+
+```r
+remove.packages("envreportbc")
+remotes::install_github("bcgov/envreportutils.internal")
+```
+
 # envreportbc 0.5.1
 
 * Fixed for use on Unix-alike platforms (not just Windows)
