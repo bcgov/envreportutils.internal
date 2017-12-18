@@ -1,4 +1,4 @@
-Package: envreportbc
+Package: envreportutils.internal
 Type: Package
 Title: Facilitate EnvReportBC indicator development
 Version: 0.5.1

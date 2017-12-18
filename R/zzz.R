@@ -17,7 +17,7 @@
                           "Without it you will not be able to embed fonts in pdfs. ", 
                           "If you require this, please install ghostscript from ", 
                           "'http://ghostscript.com/download/gsdnld.html' and ",
-                          "run envreportbc:::set_ghostscript('path_to_executable')")
+                          "run envreportutils.internal:::set_ghostscript('path_to_executable')")
   }
   invisible()
 }

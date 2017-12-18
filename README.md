@@ -1,4 +1,4 @@
-# envreportbc
+# envreportutils.internal
 
 <div id="devex-badge"><a rel="Delivery" href="https://github.com/BCDevExchange/assets/blob/master/README.md"><img alt="In production, but maybe in Alpha or Beta. Intended to persist and be supported." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/delivery.svg" title="In production, but maybe in Alpha or Beta. Intended to persist and be supported." /></a></div>
 
@@ -7,7 +7,7 @@
 
 An [R](http://r-project.org) package containing templates & internal utility functions for [Environmental Reporting BC](http://www2.gov.bc.ca/gov/content?id=FF80E0B985F245CEA62808414D78C41B). 
 
-You can visit the [Wiki](https://github.com/bcgov-c/envreportbc/wiki/EnvReportBC-Team-Wiki) to find documentation on tools and related program work flows.
+You can visit the [Wiki](https://github.com/bcgov-c/envreportutils.internal/wiki/EnvReportBC-Team-Wiki) to find documentation on tools and related program work flows.
 
 ## Usage
 
@@ -15,7 +15,7 @@ Install with:
 
 ```r
 ## install.packages("devtools") # if not already installed
-devtools::install_github("bcgov-c/envreportbc")
+devtools::install_github("bcgov-c/envreportutils.internal")
 ```
 
 ## Project Status
@@ -24,7 +24,7 @@ Relatively stable, but under constant development. This package contains templat
 
 ## Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov-c/envreportbc/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov-c/envreportutils.internal/issues/).
 
 ## How to Contribute
 

@@ -10,10 +10,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-#' envreportbc
+#' envreportutils.internal
 #' 
-#' The envreportbc package contains templates & internal utility functions for Environmental Reporting BC.
+#' The envreportutils.internal package contains templates & internal utility functions for Environmental Reporting BC.
 #'
-#' @name envreportbc
+#' @name envreportutils.internal
 #' @docType package
 NULL

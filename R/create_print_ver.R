@@ -21,7 +21,7 @@ print_ver <- function(..., keep_tex = FALSE) {
   
   # get the locations of resource files located within the package
   template <- get_resource("template.tex")
-  gphxpath <- get_resource("template_images")
+  gphxpath <- get_resource("img")
   
   mainfont <- "Palatino Linotype"
   headfont <- "Calibri"
@@ -36,7 +36,7 @@ print_ver <- function(..., keep_tex = FALSE) {
 }
 
 get_resource <- function(resource) {
-  system.file("rmarkdown", "templates", "print_ver", "resources", resource, package = "envreportbc")
+  system.file("rmarkdown", "templates", "print_ver", "resources", resource, package = "envreportutils.internal")
 }
 
 #' Convert html text to markdown
@@ -66,7 +66,7 @@ html_md <- function(html, md = tempfile(fileext = "md")) {
 #' draft_print_ver("print_ver.Rmd")
 #' }
 draft_print_ver <- function(filename) {
-  rmarkdown::draft(file = filename, package = "envreportbc", 
+  rmarkdown::draft(file = filename, package = "envreportutils.internal", 
                    template = "print_ver", create_dir = "default", 
                    edit = TRUE)
 }

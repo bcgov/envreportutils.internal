@@ -2,7 +2,7 @@
 topic: # One of: "air", "water", "plants-and-animals", "climate-change", "land", "sustainability"
 title: "Indicator Title"
 bibliography: example.bib
-output: envreportbc::print_ver
+output: envreportutils.internal::print_ver
 ---
 
 <!--

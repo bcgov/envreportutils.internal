@@ -28,10 +28,10 @@ slide_template <- function(title, path = ".") {
   
   bcgovr:::add_file_from_template(path, 
                         fname = file.path("io_presentation", "presentation_template.Rmd"), 
-                        outfile = paste0(title, ".Rmd"), pkg = "envreportbc")
+                        outfile = paste0(title, ".Rmd"), pkg = "envreportutils.internal")
   bcgovr:::add_file_from_template(file.path(path, "css"), 
                          fname = file.path("io_presentation","css","envreportbc-style.css"), 
-                         outfile = "envreportbc-style.css", pkg = "envreportbc")
+                         outfile = "envreportbc-style.css", pkg = "envreportutils.internal")
   
   pngs <- c("BC_MoE_logo.png", "come-in-open.png", "databc.png", 
             "EnvironmentalReportingBC_logo.png", "envreportbc-github.png", 
@@ -44,7 +44,7 @@ slide_template <- function(title, path = ".") {
     bcgovr:::add_file_from_template(file.path(path, "img"), 
                                             fname = png, 
                                             outfile = basename(png), 
-                                            pkg = "envreportbc")
+                                            pkg = "envreportutils.internal")
   })
 
   invisible(TRUE)
