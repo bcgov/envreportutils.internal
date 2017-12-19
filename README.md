@@ -22,6 +22,17 @@ devtools::install_github("bcgov-c/envreportutils.internal")
 
 Relatively stable, but under constant development. This package contains templates for creating products with B.C. Government and Environmental Reporting BC specific branding, and thus is maintained in a private repository.
 
+*Note:* We recently renamed the package from **envreportbc** to **envreportutils.internal**. To install the new package, run: 
+
+```r
+remove.packages("envreportbc")
+remotes::install_github("bcgov-c/envreportutils.internal")
+```
+
+If you contribute to the package, you will want to rename your remote: Rename the folder from `envreportbc` to `envreportutils.internal`, `cd` into the directory, and type: `git remote set-url origin https://github.com/bcgov-c/envreportutils.internal.git`
+
+(Or simply delete the `envreportbc` directory, and type `git clone https://github.com/bcgov-c/envreportutils.internal.git`)
+
 ## Getting Help or Reporting an Issue
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov-c/envreportutils.internal/issues/).
