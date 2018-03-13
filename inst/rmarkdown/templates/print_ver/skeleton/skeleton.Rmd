@@ -32,7 +32,7 @@ Cum vivamus penatibus sed mus fringilla non sociosqu taciti ut. Sed, semper lacu
 
 ## Data
 
-\*By accessing these datasets, you agree to the license associated with each file, as indicated in parentheses below.
+\*By accessing these datasets, you agree to the licence associated with each file, as indicated in parentheses below.
 
 * Data 1
 * Data 2
