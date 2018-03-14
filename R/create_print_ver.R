@@ -29,7 +29,8 @@ print_ver <- function(..., keep_tex = FALSE) {
   # call the base html_document function, passing in the template location and 
   # path to template images
   rmarkdown::pdf_document(..., template = template, keep_tex = keep_tex,
-                          pandoc_args = c("--latex-engine=xelatex", "--variable", 
+                          latex_engine = "xelatex",
+                          pandoc_args = c("--variable", 
                                           paste0("mainfont=", mainfont), "--variable", 
                                           paste0("sansfont=", headfont), "--variable", 
                                           paste0("gphxpath=", gphxpath, "/")))
