@@ -72,106 +72,54 @@ draft_print_ver <- function(filename) {
                    edit = TRUE)
 }
 
-# #'Create a print version starter based on the template
-# #'
-# #'<full description of function>
-# #'
-# #' @param html Path to the html file to convert from
-# #' @param name Short name which will form the base name of the .Rmd file
-# #' @param dir Folder in which to place resulting .Rmd file. Default is 
-# #'  \code{print_ver} inside the current working directory
-# #' @param bucket the indicator topic. Required if html is \code{NULL}.
-# #' @param title the indicator title. Required if html is \code{NULL}.
-# #' @export
-# create_print_ver <- function(html = NULL, name = NULL, dir = "print_ver", bucket = NULL, title = NULL) {
-#   
-#   if (is.null(name)) {
-#     name <- basename(getwd())
-#     message("Using the name of the current folder as the filename, since none was specified")
-#   }
-#   
-#   if (!file.exists(dir)) {
-#     dir.create(dir)
-#   }
-#   
-#   filepath <- file.path(dir, paste0(name, ".Rmd"))
-#   
-#   if (file.exists(filepath)) {
-#     stop(paste0("File ", filepath, " already exists"))
-#   }
-#   
-#   if (is.null(html)) {
-#     if (is.null(title) || is.null(bucket)) stop("You must specify a bucket and a title")
-#     buckets <- get_buckets()
-#     bucket <- buckets[match(tolower(bucket), tolower(buckets))]
-#     if (is.na(bucket)) stop("Bucket must be one of ", paste(buckets, collapse = ", "))
-#     main_content <- ""
-#   } else {
-#     md <- html_md(html)
-#     lines <- readLines(md)
-#     sections <- md_sections(lines)
-#     bucket <- sections$bucket
-#     title <- sections$title
-#     main_content <- lines[sections$start:sections$end]
-#   }
-#   
-#   header_content <- c("---", 
-#                       paste0("title: ", bucket), 
-#                       paste0("subtitle: ", title), 
-#                       "bibliography: example.bib", 
-#                       paste0("output:"),
-#                       paste0("  pdf_document:"), 
-#                       paste0("    template: D:/templates/print_ver_template.tex"), 
-#                       "---")
-#   
-#   instructions <- "
-# <!--
-# Instructions:
-# 
-# The text will be littered with divs etc. You will need to remove them and 
-# replace them with knitr code chunks in the appropriate places.
-# 
-# If you don't have a bibliography, delete the bibliography line in the YAML header.
-# If you do have a bibliography, insert the filename. In-text citations are done as:
-# [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
-# -->"
-#   
-#   conn <- file(filepath, open = "w")
-#   
-#   writeLines(header_content, conn)
-#   writeLines(instructions, conn)
-#   writeLines(main_content, conn)
-#   
-#   close(conn)
-#   
-#   filepath
-# }
+#' Convert a file on the SoE wwwd site to markdown in the envreportbc 
+#' rmarkdown template, and save it in the \code{print_ver} folder.
+#' 
+#' If there is an existing file in the \code{print_ver} folder, a backup will be 
+#' created
+#'
+#' @param html_file the file in the soe/indicators folder on the web. Use the form
+#'  \code{folder/indicator.html} (e.g., \code{"land/roads.html"})
+#'
+#' @return writes the file to the \code{print_ver} folder of the current project.
+#' @export
+web2print_ver <- function(html_file) {
+  url <- paste0("http://wwwd.env.gov.bc.ca/soe/indicators/", html_file)
+  tmp_html <- tempfile(fileext = ".html")
+  download.file(url, destfile = tmp_html)
+  on.exit(unlink(tmp_html))
+  proj_dir <- rstudioapi::getActiveProject()
+  dir.create(file.path(proj_dir, "print_ver"), showWarnings = FALSE)
+  proj <- basename(proj_dir)
+  print_ver_file <- file.path(proj_dir, "print_ver", paste0(proj, ".Rmd"))
+  if (file.exists(print_ver_file)) {
+    file.rename(print_ver_file, paste0(print_ver_file, ".backup", Sys.Date()))
+  }
+  md_file <- html_md(tmp_html, print_ver_file)
+  message("Converting ", url, " to\n    ", md_file)
+  fix_print_ver(md_file, bucket = strsplit(html_file, "/")[[1]][1])
+  file.edit(md_file)
+  invisible(md_file)
+}
 
-# md_sections <- function(lines) {
-#   bucket_line <- grep("\\{\\.bucket", lines)
-#   bucket <- parse_bucket(lines[bucket_line])
-#   h2_lines <- grep("------", lines)
-#   title_line <- min(h2_lines[h2_lines > bucket_line] - 1)
-#   start <- title_line + 2
-#   title <- lines[title_line]
-#   end <- find_end(lines)
-#   list(start = start, bucket = bucket, title = title, end = end)
-# }
-# 
-# find_end <- function(lines) {
-#   updated_line <- grep("^Updated\\s+[A-Z][a-z]{2,8}\\s+\\d{4}", lines)
-#   end <- updated_line + 1
-#   end
-# }
-
-# parse_bucket <- function(bucket) {
-#   bucket <- strsplit(bucket, "bucket|\\}")[[1]][2]
-#   if (bucket == "Land") {
-#     bucket <- "Land and Forests"
-#   } else if (bucket == "PlantsAndAnimals") {
-#     bucket <- "Plants and Animals"
-#   } else if (bucket == "Climate") {
-#     bucket <- "Climate Change"
-#   }
-#   bucket
-# }
+fix_print_ver <- function(file, bucket) {
+  rmd <- readLines(file)
+  body_start <- grep("::: \\{#body\\}", rmd)[1]
+  body_end <- grep("^::: \\{#shareIcons}", rmd)[1]
+  rmd <- rmd[body_start:(body_end - 1)]
+  title_line <- grep("==========+", rmd)[1]
+  title_text <- rmd[title_line - 1]
+  rmd <- rmd[title_line:length(rmd)]
+  first_line <- grep("^[a-zA-Z]", rmd)[1]
+  rmd <- rmd[first_line:length(rmd)]
+  keep_lines <- !grepl("^:::($|.*\\}$)", rmd)
+  rmd <- rmd[keep_lines]
+  cat("---\n", file = file)
+  cat("topic: \"", bucket, "\"\n", file = file, sep = "", append = TRUE)
+  cat("title: \"", title_text, "\"\n", file = file, sep = "", append = TRUE)
+  cat("output: envreportutils.internal::print_ver\n", file = file, append = TRUE)
+  cat("---\n\n", file = file, append = TRUE)
+  cat("<--! This dump from the html on the wwwd site will have lots of leftover tags
+      and require formatting and cleaning up -->\n\n", file = file, append = TRUE)
+  cat(rmd, file = file, sep = "\n", append = TRUE)
+}
