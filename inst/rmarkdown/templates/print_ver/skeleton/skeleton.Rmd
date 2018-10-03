@@ -37,7 +37,12 @@ Cum vivamus penatibus sed mus fringilla non sociosqu taciti ut. Sed, semper lacu
 * Data 1
 * Data 2
 
-Published and Available On-Line at Environmental Reporting BC (Month Year):
+----
+
+Published and Available On-Line at Environmental Reporting BC (Month Year):  
 [](http://www.env.gov.bc.ca/soe)
 
 Email correspondence to: envreportbc@gov.bc.ca
+
+Suggested Citation:  
+Environmental Reporting BC. Year. Indicator Title. State of Environment Reporting, Ministry of Environment and Climate Change Strategy, British Columbia, Canada.
