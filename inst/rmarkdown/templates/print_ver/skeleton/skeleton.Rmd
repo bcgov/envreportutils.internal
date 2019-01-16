@@ -3,6 +3,8 @@ topic: # One of: "air", "water", "plants-and-animals", "climate-change", "land",
 title: "Indicator Title"
 bibliography: example.bib
 output: envreportutils.internal::print_ver
+params:
+  draft: TRUE
 ---
 
 <!--
@@ -12,6 +14,26 @@ If you don't have a bibliography, delete the bibliography line in the YAML heade
 If you do have a bibliography, insert the filename. In-text citations are done as:
 [@Moe-etal-1999]. End the document with the bibliography heading (e.g., # References).
 -->
+
+```{r echo = FALSE, include=params$draft, results='asis'}
+cat("\\begin{center}
+\\fbox{
+  \\begin{minipage}[c]{14cm}
+ 
+   \\begingroup\\centering{\\textbf{DRAFT – NOT FOR DISTRIBUTION}}
+   
+    \\endgroup
+    
+    \\vspace{1mm}
+   
+    \\text{This DRAFT public reporting product is under review and may change. It is not intended}
+    \\text{to be shared, cited or used at this time. Please contact Environmental Reporting BC program}
+    \\text{staff if you have questions about the content. }
+   
+  \\end{minipage}
+}
+\\end{center}")
+```
 
 Lorem ipsum dolor sit amet, maximus risus, imperdiet mi ac. Vitae tempor ultrices, odio euismod fames tempus at, sodales, eu lacus. Sit ac pellentesque eget ligula sociis mi sociis taciti sed nec. Sodales leo nam himenaeos a et. Porttitor adipiscing risus donec rhoncus est ut eget eu. Feugiat pellentesque donec, vitae neque. Sit faucibus eget nec quis turpis orci. Et, ultrices aptent magnis.
 
